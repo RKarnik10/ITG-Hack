@@ -81,3 +81,16 @@ def test_views():
     assert np.allclose(disp.loc[away, "x"], 120 - df.loc[away, "x"])
     sb = to_statsbomb(df)
     assert {"location", "pass_end_location", "pass_outcome", "shot_outcome"} <= set(sb.columns)
+
+
+def test_store_verifier_catches_bad_numbers():
+    from touchline.analytics.store import MatchStore
+    df, meta = simulate_match("KBY", "NMA", seed=2031)
+    store = MatchStore(df, meta)
+    fid = store.f_team["KBY"]["xg"]
+    good = f"Kestrel Bay created {store.facts[fid].show()} xG [{fid}]."
+    bad = f"Kestrel Bay created 9.9 xG [{fid}] and won 7-0."
+    assert store.verify(good)["ok"]
+    report = store.verify(bad)
+    assert not report["ok"]
+    assert any("never occurred" in i["problem"] for i in report["issues"])

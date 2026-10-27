@@ -290,7 +290,8 @@ class MatchSim:
         self._emit(opp_code, winner, kind, rx, ry)
 
     def _pass_end(self, x: float, y: float, club: Club, longer: bool) -> tuple[float, float, bool]:
-        mean_len = 14.0 * club.directness * (1.45 if longer else 1.0) * (1.35 if x < 30 else 1.0)
+        deep = (2.0 if longer else 1.35) if x < 35 else 1.0  # clearances from deep go long
+        mean_len = 14.0 * club.directness * (1.45 if longer else 1.0) * deep
         length = float(self.rng.lognormal(math.log(mean_len) - 0.15, 0.55))
         # Aim at a point ahead of the ball that saturates at the edge of the box, so
         # attacks circulate around the area (sideways/backward) instead of piling in.
@@ -314,6 +315,9 @@ class MatchSim:
             self.holder = self._pick(att, (x, y))
         z = zone(x, y)
         ratio = att.q / dfn.q
+        # game state: trailing sides push in the second half, leaders sit deeper
+        if self.period == 2 and att.goals != dfn.goals:
+            ratio *= 1.12 if att.goals < dfn.goals else 0.92
         s = PRIORS["s"][z] * ratio ** 0.8 * SHOT_SCALE
         t = PRIORS["t"][z] / ratio ** 1.1
         t *= 1.0 + (dfn.club.press - 1.0) * (1.3 if x < 60 else 0.4)
@@ -402,7 +406,7 @@ class MatchSim:
         card = None
         if self.rng.random() < 0.002 * opp.club.aggression:
             card = "Red Card"
-        elif self.rng.random() < 0.135 * opp.club.aggression:
+        elif self.rng.random() < 0.135 * opp.club.aggression * (0.35 if fouler.id in opp.yellows else 1.0):
             card = "Second Yellow" if fouler.id in opp.yellows else "Yellow Card"
             opp.yellows.add(fouler.id)
         if card:
