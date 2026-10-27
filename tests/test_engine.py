@@ -1,0 +1,83 @@
+"""Calibration tests: the synthetic engine must stay football-realistic.
+
+Reference ranges are typical top-flight per-match values (both teams unless noted).
+"""
+import itertools
+
+import numpy as np
+import pandas as pd
+import pytest
+
+from touchline.sim.engine import simulate_match, to_display, to_statsbomb
+from touchline.sim.teams import CLUBS
+
+
+@pytest.fixture(scope="module")
+def season():
+    pairs = list(itertools.permutations(CLUBS, 2))
+    rows, frames = [], []
+    for i in range(120):
+        home, away = pairs[i % len(pairs)]
+        df, meta = simulate_match(home, away, seed=500 + i)
+        frames.append(df)
+        shots, passes = df[df.type == "Shot"], df[df.type == "Pass"]
+        rows.append({
+            "goals": sum(meta["score"]), "home_goals": meta["score"][0], "away_goals": meta["score"][1],
+            "shots_per_team": len(shots) / 2, "xg": shots.xg.sum(), "events": len(df),
+            "completion": (passes.outcome == "Complete").mean(),
+            "fouls": (df.type == "Foul Committed").sum(), "corners": (df.set_piece == "Corner").sum(),
+            "xg_per_shot": shots.xg.mean(),
+        })
+    return pd.DataFrame(rows), frames
+
+
+@pytest.mark.parametrize("col,lo,hi", [
+    ("goals", 2.4, 3.6),
+    ("shots_per_team", 10, 16),
+    ("completion", 0.75, 0.88),
+    ("events", 1800, 2600),
+    ("fouls", 15, 30),
+    ("corners", 6, 13),
+    ("xg_per_shot", 0.08, 0.14),
+])
+def test_per_match_means_are_realistic(season, col, lo, hi):
+    stats, _ = season
+    assert lo <= stats[col].mean() <= hi, f"{col} mean {stats[col].mean():.3f} outside [{lo}, {hi}]"
+
+
+def test_xg_tracks_goals(season):
+    stats, _ = season
+    assert abs(stats.xg.sum() - stats.goals.sum()) / stats.goals.sum() < 0.15
+
+
+def test_home_advantage_exists(season):
+    stats, _ = season
+    assert stats.home_goals.mean() > stats.away_goals.mean()
+
+
+def test_same_seed_same_match():
+    a, _ = simulate_match("KBY", "IRV", seed=7)
+    b, _ = simulate_match("KBY", "IRV", seed=7)
+    pd.testing.assert_frame_equal(a, b)
+
+
+def test_coordinates_on_pitch(season):
+    _, frames = season
+    df = pd.concat(frames)
+    assert df.x.between(0, 120).all() and df.y.between(0, 80).all()
+    assert df.end_x.dropna().between(0, 120).all() and df.end_y.dropna().between(0, 80).all()
+
+
+def test_score_columns_are_monotonic(season):
+    _, frames = season
+    for df in frames[:10]:
+        assert df.score_home.is_monotonic_increasing and df.score_away.is_monotonic_increasing
+
+
+def test_views():
+    df, meta = simulate_match("SCR", "EMP", seed=3)
+    disp = to_display(df, meta["home"])
+    away = df.team == meta["away"]
+    assert np.allclose(disp.loc[away, "x"], 120 - df.loc[away, "x"])
+    sb = to_statsbomb(df)
+    assert {"location", "pass_end_location", "pass_outcome", "shot_outcome"} <= set(sb.columns)
