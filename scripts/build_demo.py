@@ -63,7 +63,7 @@ def main() -> None:
     runs.mkdir(exist_ok=True)
     jobs = [(p, Persona()) for p in picks]
     first = picks[0]
-    jobs += [(first, Persona(first["home"], "expert", "English")), (first, Persona(first["away"], "beginner", "Spanish"))]
+    jobs += [(first, Persona(first["away"], "beginner", "Spanish"))]
     for p, persona in jobs:
         t = time.time()
         df, meta = simulate_match(p["home"], p["away"], p["seed"])

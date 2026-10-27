@@ -59,6 +59,11 @@ def demo_matches() -> list[dict]:
     return [{"home": "KBY", "away": "NMA", "seed": 2031, "label": "Kestrel Bay FC 2-1 Northmere Athletic"}]
 
 
+@st.cache_data(show_spinner=False)
+def cached_dot() -> str:
+    return workflow_dot()
+
+
 def run_path(match_id: str, persona: Persona, flags: str = "") -> Path:
     return RUNS / f"{match_id}__{persona.key()}{('__' + flags) if flags else ''}.json"
 
@@ -317,7 +322,7 @@ with tab_trace:
         c1, c2 = st.columns([3, 2])
         with c1:
             st.markdown("#### Workflow graph (exported from Agent Framework)")
-            st.graphviz_chart(workflow_dot(), use_container_width=True)
+            st.graphviz_chart(cached_dot(), use_container_width=True)
         with c2:
             st.markdown("#### Fact-Checker verdicts")
             for v in run["verdicts"]:

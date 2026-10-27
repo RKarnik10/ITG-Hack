@@ -25,7 +25,7 @@ from . import fallback, prompts
 from .llm import Provider, ProviderOutage, available_providers, cache_get, cache_key, cache_put, make_client
 from .tools import make_tools
 
-LIVE_LINE = re.compile(r"^\s*\**\s*(\d{1,3}(?:\+\d{1,2})?)\s*'?\s*\**\s*[|:\-–]\s*(.+)$")
+LIVE_LINE = re.compile(r"^\s*\**\s*(\d{1,3}(?:\+\d{1,2})?)\s*['’]?\s*\**\s*(?:\[F\d+\]\s*)*[|:\-–]\s*(.+)$")
 MAX_REVISIONS = 2
 
 
@@ -293,7 +293,10 @@ class FactCheckerStep(_Step):
                f"{sum(i['severity'] == 'error' for i in issues)} errors, {sum(i['severity'] == 'warning' for i in issues)} warnings",
                status="ok" if report["ok"] else "warn", ms=(time.perf_counter() - t0) * 1000)
         if draft.revision == 0:  # one LLM review pass for qualitative claims
-            prompt = f"FACTS:\n{s.fact_sheet()}\n\nDRAFT:\n{draft.text.split('RECAP:', 1)[-1]}"
+            recap = draft.text.split("RECAP:", 1)[-1]
+            cited = [i.strip() for grp in re.findall(r"\[(F\d+(?:\s*,\s*F\d+)*)\]", recap) for i in grp.split(",")]
+            ids = list(dict.fromkeys(s.core_fact_ids() + cited))
+            prompt = f"FACTS:\n{s.fact_sheet(ids)}\n\nDRAFT:\n{recap}"
             text, _ = await run_agent(mc, "Fact-Checker", prompts.FACT_CHECKER, prompt, ("lookup_fact",))
             if text and "NONE" not in text.upper()[:12]:
                 for line in [ln[2:].strip() for ln in text.splitlines() if ln.strip().startswith("- ")][:3]:
@@ -441,6 +444,8 @@ def workflow_dot() -> str:
     df, meta = simulate_match("KBY", "IRV", 1)
     mc = MatchContext(MatchStore(df, meta), Persona(), [Provider("offline", "templates")])
     dot = WorkflowViz(build_workflow(mc)).to_digraph()
+    dot = re.sub(r",?\s*fillcolor=\"?[#\w]+\"?", "", dot)          # use our dark node style
+    dot = re.sub(r",?\s*style=\"?filled\"?", "", dot).replace("[, ", "[").replace(" []", "")
     style = ('bgcolor="transparent"; rankdir=LR; node [shape=box, style="rounded,filled", fillcolor="#1f2937", '
              'fontcolor="#f0efec", color="#3987e5", fontname="Helvetica"]; '
              'edge [color="#9ca3af", fontcolor="#c3c2b7", fontname="Helvetica"];')

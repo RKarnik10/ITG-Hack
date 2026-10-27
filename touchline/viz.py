@@ -139,9 +139,10 @@ def gantt(trace: list[dict], height: int = 360) -> go.Figure:
             agents.append(t["agent"])
     fig = go.Figure()
     seen = set()
+    total = max((t["end_ms"] for t in runs), default=1)
     for t in runs:
         status = t["status"] if t["status"] in STATUS else "ok"
-        dur = max(t["end_ms"] - t["start_ms"], 60 if t["step"] != "tool" else 30)
+        dur = max(t["end_ms"] - t["start_ms"], total * (0.006 if t["step"] != "tool" else 0.004))
         show = status not in seen
         seen.add(status)
         fig.add_trace(go.Bar(

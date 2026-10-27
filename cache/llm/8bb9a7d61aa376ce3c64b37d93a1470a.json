@@ -1,0 +1,10 @@
+{
+ "text": "- Saltcombe Rovers dominated the early stages of the match, which contradicts the fact that Duskvale Wanderers had 59% possession according to F9.\n- Duskvale Wanderers scored two rapid goals to overturn their fortunes, which aligns with factual evidence but should be specific: Theo Ibarra at 45+4' and Dario Okafor at 52', per F72 and F78.\n- Yusu Osei's late, decisive goal in the 90th minute sealed the 3-2 victory, which contradicts F85 and F89: Duskvale Wanderers' win probability before Yusuf Osei's goal at 89' was 3%, and after it was 94%.\n- The game was a tale of two halves, with Saltcombe Rovers missing chances and Duskvale Wanderers surging to a thrilling win, which somewhat aligns with the dynamics shown in the facts but could be more nuanced.",
+ "tools": [
+  "lookup_fact",
+  "lookup_fact",
+  "lookup_fact"
+ ],
+ "tokens": 7873,
+ "provider": "Ollama (local) \u00b7 qwen2.5:7b"
+}

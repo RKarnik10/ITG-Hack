@@ -53,7 +53,7 @@ def tactician(store: MatchStore) -> str:
         main = max(lanes, key=lambda k: store.facts[lanes[k]].value) if lanes else "centre"
         parts.append(f"### {n[team]}\nPossession {c(f['possession_pct'])} with average pass length "
                      f"{c(f['avg_pass_length'])} yards. Pressed at PPDA {c(f['ppda'])} and won the ball back "
-                     f"within 40m of goal {c(f['high_regains'])} times. Most final-third entries came down the "
+                     f"within 40m of the opponent's goal {c(f['high_regains'])} times. Most final-third entries came down the "
                      f"{main} ({c(lanes[main]) if lanes else 'n/a'}).")
     if store.spells:
         s = max(store.spells, key=lambda s: s["threat_for"])

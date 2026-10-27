@@ -97,7 +97,7 @@ class MatchStore:
                 ("passes", "Passes", ""), ("pass_completion_pct", "Pass completion", "%"),
                 ("xt", "Expected threat (xT) generated", ""), ("big_chances", "Big chances (xG>=0.25)", ""),
                 ("counters_to_shot", "Counter-attacks ending in a shot within 15s", ""),
-                ("high_regains", "Ball regains within 40m of goal", ""), ("ppda", "PPDA (lower = more intense press)", ""),
+                ("high_regains", "High regains (ball won back within 40m of the OPPONENT's goal)", ""), ("ppda", "PPDA (lower = more intense press)", ""),
                 ("crosses", "Crosses", ""), ("set_piece_xg", "Set-piece xG", ""), ("corners", "Corners", ""),
                 ("fouls", "Fouls committed", ""), ("yellows", "Yellow cards", ""), ("reds", "Red cards", ""),
                 ("avg_pass_length", "Average open-play pass length (yards)", ""),
@@ -182,7 +182,7 @@ class MatchStore:
             f"{n} (designed style: {club.style})",
             f"Possession {self.c(f['possession_pct'])}; passes {self.c(f['passes'])} at {self.c(f['pass_completion_pct'])}; "
             f"avg pass length {self.c(f['avg_pass_length'])} yds; forward passes {self.c(f['forward_pass_pct'])}",
-            f"Pressing: PPDA {self.c(f['ppda'])}; regains within 40m of goal {self.c(f['high_regains'])}; fouls {self.c(f['fouls'])}",
+            f"Pressing: PPDA {self.c(f['ppda'])}; high regains (won back within 40m of the opponent's goal) {self.c(f['high_regains'])}; fouls {self.c(f['fouls'])}",
             f"Attack: final-third entries {self.c(f['final_third_entries'])} ({lanes}); crosses {self.c(f['crosses'])}; "
             f"counters to shot {self.c(f['counters_to_shot'])}",
             f"Chances: shots {self.c(f['shots'])}, xG {self.c(f['xg'])}, big chances {self.c(f['big_chances'])}, "
@@ -232,8 +232,15 @@ class MatchStore:
                 for r in d.head(limit).itertuples()]
         return "\n".join(rows) or "No notable events in that window."
 
-    def fact_sheet(self) -> str:
-        return "\n".join(f"{f.id} | {f.label} | {f.show()}" for f in self.facts.values())
+    def fact_sheet(self, ids=None) -> str:
+        facts = self.facts.values() if ids is None else [self.facts[i] for i in ids if i in self.facts]
+        return "\n".join(f"{f.id} | {f.label} | {f.show()}" for f in facts)
+
+    def core_fact_ids(self) -> list[str]:
+        ids = [self.f_score]
+        for team in (self.home, self.away):
+            ids += [self.f_team[team][k] for k in ("goals", "xg", "shots", "possession_pct", "big_chances")]
+        return ids
 
     # ---------------------------------------------------------------- checking
     def _known_numbers(self) -> set[float]:

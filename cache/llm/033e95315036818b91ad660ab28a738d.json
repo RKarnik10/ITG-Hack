@@ -1,0 +1,6 @@
+{
+ "text": "**Headline**  \nDuskvale Wanderers Come From Behind to Topple Saltcombe Rovers [F1]\n\n1. **Saltcombe Rovers dominated possession, holding 59% [F9] but struggled with big chances, creating only 3 [F13].\n2. **Leon Quinlan's penalty boosted Saltcombe Rovers' win probability from 80% [F67] to 97% [F68], marking a major shift.\n3. **Theo Ibarra's goal at 45+4' [F72] significantly reversed the game, changing Duskvale Wanderers' win probability from 0% [F73] to 4% [F74].\n4. **Dayo Okafor's equalizer in the 52nd minute [F78] pushed Duskvale Wanderers' win probability to 23% [F80], a significant comeback from two goals down.\n\n**On-screen graphics**  \n1. Win-probability swing at 45+4' [F74]  \n2. Big chance missed by Emre Lomax at 6' [F57]  \n3. Late comeback goals in the 52' and 89' minutes [F78, F84]",
+ "tools": [],
+ "tokens": 1719,
+ "provider": "Ollama (local) \u00b7 qwen2.5:7b"
+}
