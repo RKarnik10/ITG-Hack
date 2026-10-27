@@ -1,0 +1,12 @@
+{
+ "text": "* **Turning Point Insight**: The 86' penalty converted by Ilya Orrin swings the match in favor of Kestrel Bay FC, increasing their win probability from 8% to 100%. [F61] [F62]\n* **Player Control**: Northmere Athletic dominated possession, holding 39% compared to Kestrel Bay FC's 61%, but failed to create clear chances, only having 2 shots on target. [F33] [F31] [F32]\n* **Key Moments**: A sequence of five Kestrel Bay FC passes sets up Aaron Varga's winning goal from a goal kick. [F70] [F68]\n* **Swinging Momentum**: After Northmere Athletic took the lead, they had a 21-point swing in win probability that they failed to capitalize on. [F55] [F56]\n* **Player Creativity**: Ilya Orrin scored the pivotal penalty with a chance xG of 0.76, showcasing Kestrel Bay FC's ability to create big chances. [F63] [F85]",
+ "tools": [
+  "get_player_ratings",
+  "get_player_ratings",
+  "get_events",
+  "get_events",
+  "get_events"
+ ],
+ "tokens": 3131,
+ "provider": "Ollama (local) \u00b7 llama3.2"
+}

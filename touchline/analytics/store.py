@@ -20,6 +20,7 @@ CITES = re.compile(r"\[(F\d+(?:\s*,\s*F\d+)*)\]")
 SCORE = re.compile(r"\b(\d{1,2})\s*[-–]\s*(\d{1,2})\b")
 MINUTE = re.compile(r"\b(\d{1,3})(?:\+(\d{1,2}))?(?:'|’|\s*(?:st|nd|rd|th)?\s*min(?:ute)?s?\b)")
 NUM = re.compile(r"(?<![\w.])(\d+(?:\.\d+)?)(?![\w])")
+PAIRED = re.compile(r"(?<![\w.])[+-]?(\d+(?:\.\d+)?)\s*(?:%|pts?|points|/10|yards?|yds)?\s*\[(F\d+(?:\s*,\s*F\d+)*)\]")
 SENT = re.compile(r"(?<=[.!?])\s+|\n+")
 
 
@@ -236,54 +237,82 @@ class MatchStore:
         for f in self.facts.values():
             if isinstance(f.value, (int, float)):
                 vals |= {round(float(f.value), 2), round(float(f.value), 1), float(round(float(f.value)))}
+            else:  # windows like "88-96" and clocks like "90+4'"
+                vals |= {float(x) for x in re.findall(r"\d+", str(f.value))}
         return vals
 
+    @staticmethod
+    def _sentences(text: str) -> list[str]:
+        """Split into sentences, re-attaching citations written after the full stop ('... 61%. [F9]')."""
+        out = []
+        for s in (s.strip() for s in SENT.split(text or "")):
+            if not s:
+                continue
+            m = re.match(r"^((?:\[F\d+(?:\s*,\s*F\d+)*\]\s*)+)(.*)$", s)
+            if m and out:
+                out[-1] += " " + m.group(1).strip()
+                s = m.group(2).strip()
+                if not s:
+                    continue
+            out.append(s)
+        return out
+
+    @staticmethod
+    def _close(x: float, v: float) -> bool:
+        x, v = abs(x), abs(v)
+        return abs(x - v) <= max(0.051, 0.02 * v) or round(v) == x
+
     def verify(self, text: str) -> dict:
-        """Checks every [F#] citation's sentence for a matching number; flags unknown numbers."""
+        """Deterministic fact check.
+
+        - a number written directly before a citation ("1.68 [F6]") must equal that fact;
+        - other citations need some matching number in their sentence (if it has numbers);
+        - scorelines must have actually occurred; uncited numbers must exist somewhere in the store.
+        """
         known = self._known_numbers()
         score_states = {(int(h), int(a)) for h, a in zip(self.df.score_home, self.df.score_away)}
         score_states |= {(a, h) for h, a in score_states}
         issues, checked = [], 0
-        for sent in [s.strip() for s in SENT.split(text) if s and s.strip()]:
+        for sent in self._sentences(text):
+            paired = set()
+            for m in PAIRED.finditer(sent):
+                if m.start() > 0 and sent[m.start() - 1] in "-–":   # "2-1 [F1]": a scoreline, checked below
+                    continue
+                x = float(m.group(1))
+                for fid in [i.strip() for i in m.group(2).split(",")]:
+                    paired.add(fid)
+                    checked += 1
+                    fact = self.facts.get(fid)
+                    if fact is None:
+                        issues.append({"sentence": sent, "problem": f"{fid} does not exist", "severity": "error"})
+                    elif isinstance(fact.value, (int, float)) and not self._close(x, float(fact.value)):
+                        issues.append({"sentence": sent, "fact": fid, "severity": "error",
+                                       "problem": f"wrote {x:g} but {fid} = {fact.show()} ({fact.label})"})
             ids = [i.strip() for grp in CITES.findall(sent) for i in grp.split(",")]
             body = CITES.sub(" ", sent)
             for h, a in SCORE.findall(body):
                 if (int(h), int(a)) not in score_states:
                     issues.append({"sentence": sent, "problem": f"scoreline {h}-{a} never occurred", "severity": "error"})
-            body = SCORE.sub(" ", body)
-            body = MINUTE.sub(" ", body)
+            body = MINUTE.sub(" ", SCORE.sub(" ", body))
             nums = [float(x) for x in NUM.findall(body)]
             for fid in ids:
+                if fid in paired:
+                    continue
                 checked += 1
                 fact = self.facts.get(fid)
                 if fact is None:
                     issues.append({"sentence": sent, "problem": f"{fid} does not exist", "severity": "error"})
-                    continue
-                if isinstance(fact.value, str) or not nums:
-                    continue
-                v = float(fact.value)
-                if not any(abs(x - v) <= max(0.051, 0.02 * abs(v)) or round(v) == x for x in nums):
-                    if not any(self._matches_other_cited(x, ids) for x in nums):
-                        issues.append({"sentence": sent, "fact": fid,
-                                       "problem": f"number(s) {nums} do not match {fid} = {fact.show()} ({fact.label})",
-                                       "severity": "error"})
+                elif isinstance(fact.value, (int, float)) and nums and \
+                        not any(self._close(x, float(fact.value)) for x in nums):
+                    issues.append({"sentence": sent, "fact": fid, "severity": "error",
+                                   "problem": f"no number in the sentence matches {fid} = {fact.show()} ({fact.label})"})
             for x in nums:
                 if x in known or round(x, 1) in known or x <= 3:
                     continue
-                if not any(self._matches_other_cited(x, [i]) for i in ids):
-                    issues.append({"sentence": sent, "problem": f"number {x:g} is not backed by any fact",
-                                   "severity": "warning"})
+                issues.append({"sentence": sent, "problem": f"number {x:g} is not backed by any fact",
+                               "severity": "warning"})
         errors = [i for i in issues if i["severity"] == "error"]
         return {"ok": not errors and len(issues) <= 1, "citations_checked": checked, "issues": issues}
-
-    def _matches_other_cited(self, x: float, ids: list[str]) -> bool:
-        for fid in ids:
-            f = self.facts.get(fid)
-            if f is not None and isinstance(f.value, (int, float)):
-                v = float(f.value)
-                if abs(x - v) <= max(0.051, 0.02 * abs(v)) or round(v) == x:
-                    return True
-        return False
 
     # ------------------------------------------------------------ persistence
     def facts_json(self) -> list[dict]:

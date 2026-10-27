@@ -1,0 +1,8 @@
+{
+ "text": "- The draft states \"early dominance by Northmere Athletic was disrupted\", whereas F2 shows that the match was won by Kestrel Bay FC with a 49% win probability, contradicting the idea of \"early dominance\" by Northmere Athletic.\n- The draft mentions \"Kestrel Bay dominating possession (61%)\", which is not accurate according to F9 (Kestrel Bay FC Possession), which shows 61% is the highest share of the match, not just during this match.",
+ "tools": [
+  "lookup_fact"
+ ],
+ "tokens": 5158,
+ "provider": "Ollama (local) \u00b7 llama3.2"
+}

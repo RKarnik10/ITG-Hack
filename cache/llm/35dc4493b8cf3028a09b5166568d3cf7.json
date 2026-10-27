@@ -1,0 +1,9 @@
+{
+ "text": "### Kestrel Bay FC\nThey began to dominate possession minutes 79-86 [F77]: threat 0.32 [F78] vs 0.03 [F79]; 5 more passes [F10] completed with forward pressure\nPossession shifted back to 55% [F9] in minutes 88-96 [F80]: threat 0.97 [F81] vs 0.11 [F82]\nLate winner sealed victory; Northmere's passing success fell to 62% [F34]\nThey ended the match 1-1, Kestrel Bay took the winner 88' on a left wing run, but only seen by 17% [F54] of the crowd.\n\n### Northmere Athletic\nNorthmere dominated 14' minutes 1-14 [F71]: threat 0.88 [F72] vs 0.09 [F73]; 3 shots off target. But lost the lead minutes 26-33 \nPossession jumped to 45% [F33] during this spell: threat 0.32 [F75] vs 0.05 [F76]\nThey were forced back 16' minutes 26-33 [F74]: threat 0.32 [F75] vs 0.05 [F76]\nIn last minutes 79-86, only threat 0.03 [F79] vs major threat 0.32 [F78]\n\n### Why momentum shifted\nMomentum shifted from Northmere Athletic to Kestrel Bay FC at minutes 88-96:\n \nTheir later intensity and final attack led to Kestrel Bay FC's late goal, ultimately forcing change.",
+ "tools": [
+  "get_team_report",
+  "get_team_report"
+ ],
+ "tokens": 2288,
+ "provider": "Ollama (local) \u00b7 llama3.2"
+}
