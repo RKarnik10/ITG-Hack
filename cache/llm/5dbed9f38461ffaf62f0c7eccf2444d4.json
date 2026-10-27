@@ -1,0 +1,6 @@
+{
+ "text": "- **Early Strike Changed Dynamics**: Saltcombe Rovers' early goal increased their win probability significantly from 31% to 50% [F56].\n- **Saltcombe Rovers Dominated Chances**: Saltcombe Rovers created most of the chances with xG of 1.68, despite taking fewer shots [F30].\n- **Ember Park Missed Key Opportunity**: Missed big chance by Ilya Arden could have turned the game: it could have increased Ember Park's win probability from 11% to 35% [F74].\n- **Tariq Orrin's Winning Goal**: Saltcombe Rovers' late winner swung the game's momentum strongly, increasing their win probability by 78 points [F87].\n- **Control and Passes**: Saltcombe Rovers had better possession (41%) and build-up xT (1.02), despite scoring fewer goals [F33, F36].",
+ "tools": [],
+ "tokens": 1603,
+ "provider": "Ollama (local) \u00b7 qwen2.5:7b"
+}

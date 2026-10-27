@@ -15,3 +15,8 @@
 - **Recovery:** per-call timeout + retry, provider failover GitHub Models → Foundry → Ollama → offline templates, simulated-outage switch, guarded outputs (strip bad sentences or fall back to grounded template), disk cache.
 - **Verified live** on local Ollama: 7 tool calls, 2 fact-check rejections → revisions → approval, 3 parallel producers (~150 s with llama3.2).
 - **Next:** Streamlit UI.
+
+## 4. Studio UI + demo tooling ✅
+- **Works:** `streamlit run app.py`: Live replay, Intelligence (turning-point cards with evidence pitch), Studio (audience outputs with hoverable fact chips + ✓ badges), Agent trace (timeline, AF workflow graph, verdicts), Ask the match (grounded Q&A), Synthetic data (calibration + CSV).
+- `scripts/build_demo.py` picks the 3 most dramatic synthetic matches and precomputes crew runs (incl. a Spanish away-fan persona and an error-injection run). `scripts/record_demo.py` records a captioned < 2 min demo video.
+- Tests: 18 (engine calibration, verifier, offline crew integration: injected-error revision loop, outage failover). CI workflow in `.github/workflows/ci.yml`.

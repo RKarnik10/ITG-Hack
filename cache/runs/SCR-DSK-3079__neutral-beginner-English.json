@@ -1,0 +1,346 @@
+{
+ "match_id": "SCR-DSK-3079",
+ "persona": {
+  "team": null,
+  "expertise": "beginner",
+  "language": "English"
+ },
+ "insights": "- **Saltcombe Rovers dominated possession**: Saltcombe Rovers held 59% [F9] of total possession.\n- **Duskvale Wanderers created fewer big chances**: Duskvale Wanderers failed to capitalize on any big chances, creating 0 [F37] compared to Saltcombe Rovers' 3 [F13].\n- **Theo Ibarra's goal was a pivotal switch**: Theo Ibarra's 45+4' goal [F72] changed the game, reversing Duskvale Wanderers' win probability from 0% [F73] to 4% [F74].\n- **Penalty significantly favored Saltcombe Rovers**: Leon Quinlan's penalty [F66] boosted Saltcombe Rovers' win probability from 80% [F67] to 97% [F68], marking a major shift.\n- **Late comeback despite early lead**: Duskvale Wanderers completed a comeback from trailing 2-0 to win 3-2, emphasizing their fighting spirit late in the match.",
+ "tactics": "### Saltcombe Rovers\nSaltcombe Rovers employed a possession-based, balanced style [F9], holding 59% of possession [F9]. Their passing was efficient at 84% accuracy [F11], with an average pass length of 15 yards [F23]. They pressed aggressively with a PPDA of 4.68 [F16], regaining possession within 40 meters of their goal 34 times [F15]. Saltcombe focused their attacks down the left and centre of the field [F26, F27], taking advantage of their set-piece opportunities [F18, F19]. They dominated from minute 2 to 36, controlling 70% of the threat [F97, F98].\n\n### Duskvale Wanderers\nDuskvale Wanderers played with a deep low block and exploited set pieces [F33, F42]. Their possession was lower at 41% [F33], but passes were more accurate at 80% [F35]. The team's attack centered around the centre channel [F51]. Despite fewer chances, their counters led to a goal [F38]. They showed resilience in their pressing with a PPDA of 5.63 [F40], regaining possession within 40 meters 23 times [F39]. \n\n### Why momentum shifted\nMomentum shifted in the match due to strategic changes and the effectiveness of the teams' respective tactics. Saltcombe Rovers dominated from the start with their possession and pressing, maintaining a high threat level [F97, F98, F99]. However, Duskvale Wanderers adjusted their defensive block and counter-attacking strategies, showing a tactical awareness [F100, F101, F102] to take advantage in the middle phase of the game. Saltcombe's focus on set pieces also played a role in their dominance, while Duskvale's resilience and counter-attacks contributed to their improved second half performance [F38].",
+ "live": [
+  {
+   "clock": "6'",
+   "text": "Saltcombe Rovers take an early lead through Emre Lomax, increasing their win probability to 65% [F55] (swing +18%). The goal came from a well-executed build-up and was a crucial moment in the match.",
+   "event_id": 195
+  },
+  {
+   "clock": "12'",
+   "text": "A big chance for Saltcombe Rovers is narrowly missed by Leon Quinlan, but the chance would have added 17% to their win probability [F64] if successful.",
+   "event_id": 313
+  },
+  {
+   "clock": "45+2'",
+   "text": "Leon Quinlan scores a penalty to extend Saltcombe Rovers' lead, boosting their win probability to 97% [F68] (swing +17%). The penalty was a turning point, providing significant control over the game.",
+   "event_id": 1057
+  },
+  {
+   "clock": "45+4'",
+   "text": "Duskvale Wanderers score through Theo Ibarra, bringing their win probability up from 0% [F73] to 4% [F74] (swing +4%). This late goal completely changed the momentum.",
+   "event_id": 1079
+  },
+  {
+   "clock": "52'",
+   "text": "Duskvale Wanderers equalize through Dario Okafor, bringing their win probability up to 23% [F80] (swing +16%). The equalizer was a significant comeback that put pressure back on Saltcombe Rovers.",
+   "event_id": 1234
+  },
+  {
+   "clock": "89'",
+   "text": "Duskvale Wanderers secure the win with a goal from Yusuf Osei, nearly doubling their win probability from 3% [F85] to 94% [F86] (swing +90%). This came despite a missed big chance by Callum Okafor moments before.",
+   "event_id": 1944
+  },
+  {
+   "clock": "90+4'",
+   "text": "Another missed big chance by Callum Okafor for Saltcombe Rovers, but the damage was already done as Duskvale Wanderers secured the victory.",
+   "event_id": 2060
+  }
+ ],
+ "recap": "Saltcombe Rovers dominated the early stages of the match, taking a commanding 2-0 lead from the penalty given by Leon Quinlan. Despite Duskvale Wanderers' remarkable resilience and tactical adjustment in the second half, they ultimately fell behind with Theo Ibarra\u2019s goal at the 45-minute mark and Dario Okafor's equalizer. Yusuf Osei's late, decisive goal in the 90th minute sealed the 3-2 victory for Duskvale Wanderers, showcasing a stirring comeback from a position of adversity. The game was a tale of two halves, with Saltcombe Rovers initially holding the ascendancy and Duskvale Wanderers fighting back with determination.",
+ "revisions": 1,
+ "verdicts": [
+  {
+   "revision": 0,
+   "ok": false,
+   "issues": [
+    {
+     "sentence": "",
+     "problem": "reviewer: Saltcombe Rovers dominated the early stages of the match.",
+     "severity": "review"
+    },
+    {
+     "sentence": "",
+     "problem": "reviewer: Duskvale Wanderers, however, displayed remarkable resilience and tactical adjustment in the second half.",
+     "severity": "review"
+    },
+    {
+     "sentence": "",
+     "problem": "reviewer: Theo Ibarra\u2019s goal at the 45-minute mark",
+     "severity": "review"
+    }
+   ]
+  },
+  {
+   "revision": 1,
+   "ok": true,
+   "issues": []
+  }
+ ],
+ "outputs": {
+  "broadcast": "**Headline**  \nDuskvale Wanderers Come From Behind to Topple Saltcombe Rovers [F1]\n\n1. **Saltcombe Rovers dominated possession, holding 59% [F9] but struggled with big chances, creating only 3 [F13].\n2. **Leon Quinlan's penalty boosted Saltcombe Rovers' win probability from 80% [F67] to 97% [F68], marking a major shift.\n3. **Theo Ibarra's goal at 45+4' [F72] significantly reversed the game, changing Duskvale Wanderers' win probability from 0% [F73] to 4% [F74].\n4. **Dayo Okafor's equalizer in the 52nd minute [F78] pushed Duskvale Wanderers' win probability to 23% [F80], a significant comeback from two goals down.\n\n**On-screen graphics**  \n1. Win-probability swing at 45+4' [F74]  \n2. Big chance missed by Emre Lomax at 6' [F57]  \n3. Late comeback goals in the 52' and 89' minutes [F78, F84]",
+  "fan": "Saltcombe Rovers started off strong and quickly took a 2-0 lead, thanks to a penalty from Leon Quinlan, significantly increasing their chances of winning to 97% [F68]. However, the game took an unexpected turn when Theo Ibarra scored for Duskvale Wanderers at the 45-minute mark, bringing the teams back to parity [F72]. Despite the early lead, Saltcombe Rovers failed to capitalize on their chances, creating just three big chances [F13] compared to Duskvale Wanderers' zero [F37]. Duskvale Wanderers showcased great resilience, scoring the equalizer at 2-2 and eventually pulling ahead with Yusuf Osei's goal in the 90th minute, securing a dramatic 3-2 win [F84]. This comeback story highlighted their determination and fighting spirit, despite trailing in the first half.",
+  "social": "### Post 1: Full-Time Score Post\nSaltcombe Rovers led early with a 2-0 advantage, but Duskvale Wanderers staged a comeback, scoring two goals in the second half. The match ended 3-2 in favor of Duskvale Wanderers. #ComebackMagic [R4]\n\n### Post 2: Stat-of-the-Match Post\nDuskvale Wanderers created no big chances but managed to score twice, reversing their fortunes. Theo Ibarra's late goal was crucial, giving them the 3-2 victory. #GameChanger [R3]\n\n### Post 3: Turning-Point Post\nThe game took a dramatic turn at 45+4' with Theo Ibarra's equalizer, swaying Duskvale Wanderers' win probability from 0% to 4%. This goal showed the resilience and fighting spirit needed for a comeback! #TurningPoint [R72]"
+ },
+ "checks": {
+  "insights": {
+   "ok": true,
+   "citations_checked": 9,
+   "issues": []
+  },
+  "tactics": {
+   "ok": false,
+   "citations_checked": 27,
+   "issues": [
+    {
+     "sentence": "They pressed aggressively with a PPDA of 4.68 [F16], regaining possession within 40 meters of their goal 34 times [F15].",
+     "problem": "number 40 is not backed by any fact",
+     "severity": "warning"
+    },
+    {
+     "sentence": "They dominated from minute 2 to 36, controlling 70% of the threat [F97, F98].",
+     "problem": "number 70 is not backed by any fact",
+     "severity": "warning"
+    },
+    {
+     "sentence": "They showed resilience in their pressing with a PPDA of 5.63 [F40], regaining possession within 40 meters 23 times [F39].",
+     "problem": "number 40 is not backed by any fact",
+     "severity": "warning"
+    }
+   ]
+  },
+  "recap": {
+   "ok": true,
+   "citations_checked": 0,
+   "issues": []
+  },
+  "social": {
+   "ok": true,
+   "citations_checked": 0,
+   "issues": []
+  },
+  "broadcast": {
+   "ok": true,
+   "citations_checked": 14,
+   "issues": []
+  },
+  "fan": {
+   "ok": true,
+   "citations_checked": 5,
+   "issues": []
+  }
+ },
+ "used": {
+  "Stats Analyst": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Tactician": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Commentator": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Fact-Checker": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Social Producer": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Broadcast Producer": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Fan Producer": "Ollama (local) \u00b7 qwen2.5:7b"
+ },
+ "trace": [
+  {
+   "agent": "Desk",
+   "step": "start",
+   "detail": "match SCR-DSK-3079; providers: Ollama (local) \u00b7 qwen2.5:7b -> Offline templates",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 2,
+   "end_ms": 2,
+   "tokens": null
+  },
+  {
+   "agent": "Stats Analyst",
+   "step": "run",
+   "detail": "cache hit",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "cached",
+   "start_ms": 3,
+   "end_ms": 3,
+   "tokens": 1775
+  },
+  {
+   "agent": "Tactician",
+   "step": "tool",
+   "detail": "get_team_report (replayed from cache)",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 3,
+   "end_ms": 3,
+   "tokens": null
+  },
+  {
+   "agent": "Tactician",
+   "step": "tool",
+   "detail": "get_team_report (replayed from cache)",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 3,
+   "end_ms": 3,
+   "tokens": null
+  },
+  {
+   "agent": "Tactician",
+   "step": "tool",
+   "detail": "get_momentum (replayed from cache)",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 3,
+   "end_ms": 3,
+   "tokens": null
+  },
+  {
+   "agent": "Tactician",
+   "step": "run",
+   "detail": "cache hit",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "cached",
+   "start_ms": 3,
+   "end_ms": 3,
+   "tokens": 2863
+  },
+  {
+   "agent": "Commentator",
+   "step": "run",
+   "detail": "cache hit",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "cached",
+   "start_ms": 4,
+   "end_ms": 4,
+   "tokens": 2623
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "verify",
+   "detail": "rev 0: 15 citations, 0 errors, 0 warnings",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 4,
+   "end_ms": 5,
+   "tokens": null
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 5,
+   "end_ms": 9735,
+   "tokens": 813
+  },
+  {
+   "agent": "Commentator",
+   "step": "handoff",
+   "detail": "revision 1 requested by Fact-Checker",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 9736,
+   "end_ms": 9736,
+   "tokens": null
+  },
+  {
+   "agent": "Commentator",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 9736,
+   "end_ms": 36634,
+   "tokens": 1542
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "verify",
+   "detail": "rev 1: 15 citations, 0 errors, 0 warnings",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 36636,
+   "end_ms": 36640,
+   "tokens": null
+  },
+  {
+   "agent": "Tactician",
+   "step": "repair",
+   "detail": "removed 1 unsupported sentence(s)",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 36643,
+   "end_ms": 36643,
+   "tokens": null
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "approve",
+   "detail": "approved after 1 revision(s)",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 36644,
+   "end_ms": 36644,
+   "tokens": null
+  },
+  {
+   "agent": "Producer hub",
+   "step": "handoff",
+   "detail": "approved package sent to 3 audience producers",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 36645,
+   "end_ms": 36645,
+   "tokens": null
+  },
+  {
+   "agent": "Social Producer",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 36651,
+   "end_ms": 48235,
+   "tokens": 1624
+  },
+  {
+   "agent": "Broadcast Producer",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 36646,
+   "end_ms": 62866,
+   "tokens": 1719
+  },
+  {
+   "agent": "Fan Producer",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 36650,
+   "end_ms": 73116,
+   "tokens": 1642
+  },
+  {
+   "agent": "Editor",
+   "step": "publish",
+   "detail": "3 outputs, 3 fully verified",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 73120,
+   "end_ms": 73120,
+   "tokens": null
+  },
+  {
+   "agent": "Desk",
+   "step": "done",
+   "detail": "19 trace events",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 73121,
+   "end_ms": 73121,
+   "tokens": null
+  }
+ ],
+ "providers": [
+  "Ollama (local) \u00b7 qwen2.5:7b",
+  "Offline templates"
+ ],
+ "outage": []
+}
