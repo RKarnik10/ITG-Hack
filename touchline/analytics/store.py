@@ -14,6 +14,26 @@ import numpy as np
 import pandas as pd
 
 from .moments import analyse
+from .winprob import game_state, live_rates
+
+# "Analyse at" moments: (period, game-clock minute) - None minute = end of that period
+MOMENTS = {"15'": (1, 15), "30'": (1, 30), "Half-time": (1, None), "60'": (2, 60), "75'": (2, 75), "Full time": None}
+
+
+def cut_match(df: pd.DataFrame, meta: dict, moment: str = "Full time") -> tuple[pd.DataFrame, dict]:
+    """The match as the studio sees it at `moment`: events so far, score so far."""
+    spec = MOMENTS[moment]
+    if spec is None:
+        return df, meta
+    period, minute = spec
+    keep = (df.period <= period) if minute is None else \
+        (df.period < period) | ((df.period == period) & (df.t < minute * 60))
+    d = df[keep].reset_index(drop=True)
+    m = dict(meta)
+    m["score"] = [int(d.score_home.iloc[-1]), int(d.score_away.iloc[-1])]
+    m["live"] = moment
+    m["match_id"] = f"{meta['match_id']}@{re.sub(r'[^A-Za-z0-9]', '', moment)}"
+    return d, m
 
 CITE = re.compile(r"\[(F\d+)\]")
 CITES = re.compile(r"\[(F\d+(?:\s*,\s*F\d+)*)\]")
@@ -84,7 +104,28 @@ class MatchStore:
     def _register(self) -> None:
         h, a = self.meta["score"]
         n = self.names
-        self.f_score = self.add(f"Final score {n[self.home]} v {n[self.away]}", f"{h}-{a}", kind="score")
+        self.live = self.meta.get("live")
+        self.f_score = self.add(f"{'Score at ' + self.live + ' (in progress)' if self.live else 'Final score'} "
+                                f"{n[self.home]} v {n[self.away]}", f"{h}-{a}", kind="score")
+        self.f_live = {}
+        if self.live:
+            now = self.wp[-1]
+            last = self.df.iloc[-1]
+            shots = self.df[self.df.type == "Shot"]
+            reds = self.df[(self.df.type == "Card") & self.df.outcome.isin(["Red Card", "Second Yellow"])]
+            lam, mu = live_rates(self.lam0, self.mu0, last.elapsed / 60,
+                                 shots[shots.team == self.home].xg.sum(), shots[shots.team == self.away].xg.sum(),
+                                 int((reds.team == self.home).sum()), int((reds.team == self.away).sum()))
+            lam, mu = game_state(lam, mu, h - a)
+            p_more = 1 - np.exp(-(lam + mu))
+            self.f_live = {
+                "wp_home": self.add(f"Live win probability {n[self.home]} at {self.live}", 100 * now[0], "%", self.home, kind="wp"),
+                "wp_draw": self.add(f"Live draw probability at {self.live}", 100 * now[1], "%", kind="wp"),
+                "wp_away": self.add(f"Live win probability {n[self.away]} at {self.live}", 100 * now[2], "%", self.away, kind="wp"),
+                "more": self.add(f"Probability of at least one more goal after {self.live}", 100 * p_more, "%", kind="wp"),
+                "next_home": self.add(f"Probability {n[self.home]} score the next goal", 100 * p_more * lam / (lam + mu), "%", self.home, kind="wp"),
+                "next_away": self.add(f"Probability {n[self.away]} score the next goal", 100 * p_more * mu / (lam + mu), "%", self.away, kind="wp"),
+            }
         pre = self.wp[0]
         self.f_pre = {
             self.home: self.add(f"Pre-match win probability {n[self.home]}", 100 * pre[0], "%", self.home, kind="wp"),
@@ -163,10 +204,18 @@ class MatchStore:
 
     def summary_text(self) -> str:
         m, n = self.meta, self.names
-        lines = [f"{n[self.home]} {m['score'][0]}-{m['score'][1]} {n[self.away]} [{self.f_score}] (synthetic match, seed {m['seed']})",
+        status = (f"STATUS: LIVE at {self.live}. The match is still in progress; this is NOT a final result." if self.live
+                  else "STATUS: full time.")
+        lines = [status,
+                 f"{n[self.home]} {m['score'][0]}-{m['score'][1]} {n[self.away]} [{self.f_score}] (synthetic match, seed {m['seed']})",
                  f"Pre-match win probability: {n[self.home]} {self.c(self.f_pre[self.home])}, draw {self.c(self.f_pre['draw'])}, "
                  f"{n[self.away]} {self.c(self.f_pre[self.away])}",
                  f"Storyline tags: {', '.join(self.storyline['tags']) or 'none'}"]
+        if self.live:
+            f = self.f_live
+            lines.append(f"Live win probability now: {n[self.home]} {self.c(f['wp_home'])}, draw {self.c(f['wp_draw'])}, "
+                         f"{n[self.away]} {self.c(f['wp_away'])}. Chance of another goal {self.c(f['more'])}: "
+                         f"next goal {n[self.home]} {self.c(f['next_home'])} vs {n[self.away]} {self.c(f['next_away'])}.")
         for team in (self.home, self.away):
             f = self.f_team[team]
             lines.append(f"{n[team]}: xG {self.c(f['xg'])}, shots {self.c(f['shots'])} ({self.c(f['shots_on_target'])} on target), "

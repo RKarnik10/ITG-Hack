@@ -1,0 +1,520 @@
+{
+ "match_id": "EMP-SCR-3023",
+ "persona": {
+  "team": null,
+  "expertise": "beginner",
+  "language": "English"
+ },
+ "insights": "- **Ember Park made the better chances**: xG 2.14 [F6] vs 0.57 [F30].\n- **Ember Park had the ball**: 59% [F9] possession at 82% [F11] completion.\n- **The decisive moment came at 87'**: Tariq Orrin's goal swung Saltcombe Rovers' win probability by 78 pts [F87].\n- **The one that got away**: Ilya Arden's chance at 69' (xG 0.27 [F75]) would have been worth 24 pts [F76] of win probability.\n- **Player of the match: Bram Ueda**: rated 8.2/10 [F120] with xT 0.21 [F123].",
+ "tactics": "### Ember Park\nEmber Park played with a chaotic gegenpress style, showcasing 59% possession [F9] and attempting 670 passes at 82% completion [F11]. Their pressing was intense, with a PPDA of 3.77 [F16], and 37 high regains [F15] within 40 meters of their opponents' goal. This aggressive approach led to 16 shots [F7] and 2 big chances [F13], but they struggled to capitalize fully.\n\n### Saltcombe Rovers\nSaltcombe Rovers exhibited a well-drilled, balanced style with 41% possession [F33] and 472 passes at 75% completion [F35], aiming to control the midfield. They pressed more defensively, allowing higher PPDA at 5.87 [F40] and only regaining possession 14 times within 40 meters of their opponents' goal [F39]. Their attacks were centered, with 33 final-third entries [F49], 54% aimed at the center [F51]. \n\n### Why momentum shifted\nMomentum swung towards Ember Park during key spells. During these periods, Ember Park\u2019s threat was consistently higher, with moments of intense pressure and possession. This contrasted with Saltcombe Rovers' steady but limited pressure, leading to a significant shift in control and dominance.",
+ "live": [
+  {
+   "clock": "31'",
+   "text": "Goal: Bram Ueda (Saltcombe Rovers); Saltcombe Rovers win prob 53% [F60] -> 81% [F61] (swing 28 pts [F62]).",
+   "event_id": 799
+  },
+  {
+   "clock": "50'",
+   "text": "Penalty: Dario Okafor (Ember Park); Ember Park win prob 4% [F66] -> 26% [F67] (swing 22 pts [F68]).",
+   "event_id": 1249
+  },
+  {
+   "clock": "69'",
+   "text": "Big chance missed: Ilya Arden (Ember Park); Ember Park win prob 11% [F72] -> 13% [F73] (swing 2 pts [F74]).",
+   "event_id": 1591
+  },
+  {
+   "clock": "87'",
+   "text": "Goal: Tariq Orrin (Saltcombe Rovers); Saltcombe Rovers win prob 5% [F85] -> 83% [F86] (swing 78 pts [F87]).",
+   "event_id": 1927
+  }
+ ],
+ "recap": "Ember Park and Saltcombe Rovers delivered a goal-laden encounter that saw the former claw their way back from a one-goal deficit before finally securing victory with a last-minute winner.",
+ "revisions": 2,
+ "verdicts": [
+  {
+   "revision": 0,
+   "ok": false,
+   "issues": [
+    {
+     "sentence": "2' [F53] | Goal: Callum Okafor (Saltcombe Rovers); Ember Park win prob 45% [F2] -> 50% [F55] (swing 5 pts [F56]).",
+     "fact": "F56",
+     "severity": "error",
+     "problem": "wrote 5 but F56 = 19 pts (Win-probability swing for Saltcombe Rovers from Callum Okafor's goal at 2')"
+    },
+    {
+     "sentence": "76' [F78] | Goal: Tomas Orrin (Ember Park); Ember Park win prob 7% [F79] -> 31% [F80] (swing 24 pts [F81]).",
+     "fact": "F81",
+     "severity": "error",
+     "problem": "wrote 24 but F81 = 23 pts (Win-probability swing for Ember Park from Tomas Orrin's goal at 76')"
+    },
+    {
+     "sentence": "Saltcombe Rovers dominated the early stages with an early goal that increased their win probability by 5% [F56] to 50% [F55].",
+     "fact": "F56",
+     "severity": "error",
+     "problem": "wrote 5 but F56 = 19 pts (Win-probability swing for Saltcombe Rovers from Callum Okafor's goal at 2')"
+    },
+    {
+     "sentence": "Their control of the midfield and superior possession (41% [F33]) allowed them to dictate play and create high-quality chances, with an xG of 1.68 [F30].",
+     "fact": "F30",
+     "severity": "error",
+     "problem": "wrote 1.68 but F30 = 0.57 (Saltcombe Rovers Expected goals (xG))"
+    },
+    {
+     "sentence": "However, Ember Park\u2019s late surge, highlighted by a goal shortly after regaining momentum, brought them back into the match with a win probability boost to 31% [F80] after their penalty miss and subsequent equalizer [F67].",
+     "fact": "F67",
+     "severity": "error",
+     "problem": "no number in the sentence matches F67 = 26% (Ember Park win probability after Dario Okafor's penalty at 50')"
+    },
+    {
+     "sentence": "Despite a crucial missed opportunity by Ilya Arden [F73], the home team\u2019s pressure finally paid off with two rapid goals from Tomas Orrin and a late winner from Tariq Orrin, securing a dramatic 3-2 victory for Saltcombe Rovers [F86], swinging their win probability by an impressive 78 points [F87].",
+     "fact": "F73",
+     "severity": "error",
+     "problem": "no number in the sentence matches F73 = 13% (Ember Park win probability after Ilya Arden's big chance missed at 69')"
+    },
+    {
+     "sentence": "Despite a crucial missed opportunity by Ilya Arden [F73], the home team\u2019s pressure finally paid off with two rapid goals from Tomas Orrin and a late winner from Tariq Orrin, securing a dramatic 3-2 victory for Saltcombe Rovers [F86], swinging their win probability by an impressive 78 points [F87].",
+     "fact": "F86",
+     "severity": "error",
+     "problem": "no number in the sentence matches F86 = 83% (Saltcombe Rovers win probability after Tariq Orrin's goal at 87')"
+    },
+    {
+     "sentence": "",
+     "problem": "reviewer: Saltcombe Rovers dominated the early stages",
+     "severity": "review"
+    },
+    {
+     "sentence": "",
+     "problem": "reviewer: Saltcombe Rovers had an xG of 1.68",
+     "severity": "review"
+    },
+    {
+     "sentence": "",
+     "problem": "reviewer: Ember Park's late surge brought them back into the match",
+     "severity": "review"
+    }
+   ]
+  },
+  {
+   "revision": 1,
+   "ok": false,
+   "issues": [
+    {
+     "sentence": "2' [F53] | Goal: Callum Okafor (Saltcombe Rovers); Ember Park win prob 45% [F2] -> 50% [F55] (swing 5 pts [F56]).",
+     "fact": "F56",
+     "severity": "error",
+     "problem": "wrote 5 but F56 = 19 pts (Win-probability swing for Saltcombe Rovers from Callum Okafor's goal at 2')"
+    },
+    {
+     "sentence": "76' [F78] | Goal: Tomas Orrin (Ember Park); Ember Park win prob 7% [F79] -> 31% [F80] (swing 24 pts [F81]).",
+     "fact": "F81",
+     "severity": "error",
+     "problem": "wrote 24 but F81 = 23 pts (Win-probability swing for Ember Park from Tomas Orrin's goal at 76')"
+    },
+    {
+     "sentence": "Saltcombe Rovers dominated the early stages with an early goal that increased their win probability by 5% [F56] to 50% [F55].",
+     "fact": "F56",
+     "severity": "error",
+     "problem": "wrote 5 but F56 = 19 pts (Win-probability swing for Saltcombe Rovers from Callum Okafor's goal at 2')"
+    },
+    {
+     "sentence": "However, Ember Park\u2019s late surge, highlighted by a goal shortly after regaining momentum, brought them back into the match with a win probability boost to 31% [F80] after their penalty miss and subsequent equalizer [F67].",
+     "fact": "F67",
+     "severity": "error",
+     "problem": "no number in the sentence matches F67 = 26% (Ember Park win probability after Dario Okafor's penalty at 50')"
+    },
+    {
+     "sentence": "Despite a crucial missed opportunity by Ilya Arden [F73], the home team\u2019s pressure finally paid off with two rapid goals from Tomas Orrin and a late winner from Tariq Orrin, securing a dramatic 3-2 victory for Saltcombe Rovers [F86], swinging their win probability by an impressive 78 points [F87].",
+     "fact": "F73",
+     "severity": "error",
+     "problem": "no number in the sentence matches F73 = 13% (Ember Park win probability after Ilya Arden's big chance missed at 69')"
+    },
+    {
+     "sentence": "Despite a crucial missed opportunity by Ilya Arden [F73], the home team\u2019s pressure finally paid off with two rapid goals from Tomas Orrin and a late winner from Tariq Orrin, securing a dramatic 3-2 victory for Saltcombe Rovers [F86], swinging their win probability by an impressive 78 points [F87].",
+     "fact": "F86",
+     "severity": "error",
+     "problem": "no number in the sentence matches F86 = 83% (Saltcombe Rovers win probability after Tariq Orrin's goal at 87')"
+    }
+   ]
+  },
+  {
+   "revision": 2,
+   "ok": false,
+   "issues": [
+    {
+     "sentence": "2' [F53] | Goal: Callum Okafor (Saltcombe Rovers); Ember Park win prob 45% [F2] -> 50% [F55] (swing 5 pts [F56]).",
+     "fact": "F56",
+     "severity": "error",
+     "problem": "wrote 5 but F56 = 19 pts (Win-probability swing for Saltcombe Rovers from Callum Okafor's goal at 2')"
+    },
+    {
+     "sentence": "76' [F78] | Goal: Tomas Orrin (Ember Park); Ember Park win prob 7% [F79] -> 31% [F80] (swing 24 pts [F81]).",
+     "fact": "F81",
+     "severity": "error",
+     "problem": "wrote 24 but F81 = 23 pts (Win-probability swing for Ember Park from Tomas Orrin's goal at 76')"
+    },
+    {
+     "sentence": "Saltcombe Rovers dominated the early stages with an early goal that increased their win probability by 5% [F56] to 50% [F55].",
+     "fact": "F56",
+     "severity": "error",
+     "problem": "wrote 5 but F56 = 19 pts (Win-probability swing for Saltcombe Rovers from Callum Okafor's goal at 2')"
+    },
+    {
+     "sentence": "Their control of the midfield and superior possession (41% [F33]) allowed them to dictate play and create high-quality chances, with an xG of 1.68 [F6] and 61% [F9] shot accuracy.",
+     "fact": "F6",
+     "severity": "error",
+     "problem": "wrote 1.68 but F6 = 2.14 (Ember Park Expected goals (xG))"
+    },
+    {
+     "sentence": "Their control of the midfield and superior possession (41% [F33]) allowed them to dictate play and create high-quality chances, with an xG of 1.68 [F6] and 61% [F9] shot accuracy.",
+     "fact": "F9",
+     "severity": "error",
+     "problem": "wrote 61 but F9 = 59% (Ember Park Possession)"
+    },
+    {
+     "sentence": "Their control of the midfield and superior possession (41% [F33]) allowed them to dictate play and create high-quality chances, with an xG of 1.68 [F6] and 61% [F9] shot accuracy.",
+     "problem": "number 61 is not backed by any fact",
+     "severity": "warning"
+    },
+    {
+     "sentence": "However, Ember Park\u2019s late surge, highlighted by a goal shortly after regaining momentum, brought them back into the match with a win probability boost to 31% [F80] after their penalty miss and subsequent equalizer [F67].",
+     "fact": "F67",
+     "severity": "error",
+     "problem": "no number in the sentence matches F67 = 26% (Ember Park win probability after Dario Okafor's penalty at 50')"
+    },
+    {
+     "sentence": "Despite a crucial missed opportunity by Ilya Arden [F73], the home team\u2019s pressure finally paid off with two rapid goals from Tomas Orrin and a late winner from Tariq Orrin, securing a dramatic 3-2 victory for Saltcombe Rovers [F86], swinging their win probability by an impressive 78 points [F87].",
+     "fact": "F73",
+     "severity": "error",
+     "problem": "no number in the sentence matches F73 = 13% (Ember Park win probability after Ilya Arden's big chance missed at 69')"
+    },
+    {
+     "sentence": "Despite a crucial missed opportunity by Ilya Arden [F73], the home team\u2019s pressure finally paid off with two rapid goals from Tomas Orrin and a late winner from Tariq Orrin, securing a dramatic 3-2 victory for Saltcombe Rovers [F86], swinging their win probability by an impressive 78 points [F87].",
+     "fact": "F86",
+     "severity": "error",
+     "problem": "no number in the sentence matches F86 = 83% (Saltcombe Rovers win probability after Tariq Orrin's goal at 87')"
+    }
+   ]
+  }
+ ],
+ "outputs": {
+  "broadcast": "**Headline:** Ember Park's Last-Minute Goal Secures Victory\n\n1. **Ember Park dominated with chances:** xG of 2.14 [F6] compared to Saltcombe Rovers' 0.57 [F30].\n2. **Controlled the ball 59% of the time:** with a pass completion rate of 82% [F11].\n3. **Tariq Orrin\u2019s goal was crucial:** swinging Saltcombe Rovers' win probability by 78 points [F87].\n4. **Ilya Arden\u2019s chance at 69\u2019 (xG 0.27 [F75]):** would have added 24 points [F76] to Ember Park\u2019s chance.\n\n**On-screen graphics:** \n1. Win-probability swing at 87'\n2. Key chance analysis of Ilya Arden\n3. Tariq Orrin's goal impact",
+  "fan": "Ember Park and Saltcombe Rovers had a thrilling match, filled with exciting chances and clutch moments. Despite this, Saltcombe took the lead early through Callum Okafor, increasing their chances of winning [F53]. Ember Park didn't give up, with Bram Ueda scoring to tie it up [F59]. However, it was Saltcombe Rovers who pulled through in the end. Tariq Orrin\u2019s late goal at the 87th minute, with an xG of 0.22 [F88], dramatically swung the win probability by a massive 78 points [F87], securing the victory for Saltcombe Rovers.",
+  "social": "### Post 1: Full-time Score\nEmber Park and Saltcombe Rovers played to a thrilling finish, with Saltcombe Rovers emerging victorious 3-2. \ud83c\udfc6 [F86]\n\n### Post 2: Stat-of-the-Match\nEmber Park dominated ball possession (59%) and had better chances with an xG of 2.14, but Saltcombe Rovers' precision led them to the win. [F6] \n\n### Post 3: Turning-point Post\nThe match turned at 87', when Tariq Orrin scored Saltcombe Rovers' winner. This goal drastically shifted the momentum, boosting their win probability by 78 points. \ud83c\udf54 [F87]"
+ },
+ "checks": {
+  "insights": {
+   "ok": true,
+   "citations_checked": 9,
+   "issues": [
+    {
+     "sentence": "- **Player of the match: Bram Ueda**: rated 8.2/10 [F120] with xT 0.21 [F123].",
+     "problem": "number 10 is not backed by any fact",
+     "severity": "warning"
+    }
+   ]
+  },
+  "tactics": {
+   "ok": false,
+   "citations_checked": 12,
+   "issues": [
+    {
+     "sentence": "Their pressing was intense, with a PPDA of 3.77 [F16], and 37 high regains [F15] within 40 meters of their opponents' goal.",
+     "problem": "number 40 is not backed by any fact",
+     "severity": "warning"
+    },
+    {
+     "sentence": "They pressed more defensively, allowing higher PPDA at 5.87 [F40] and only regaining possession 14 times within 40 meters of their opponents' goal [F39].",
+     "problem": "number 40 is not backed by any fact",
+     "severity": "warning"
+    }
+   ]
+  },
+  "recap": {
+   "ok": true,
+   "citations_checked": 0,
+   "issues": []
+  },
+  "social": {
+   "ok": true,
+   "citations_checked": 3,
+   "issues": []
+  },
+  "broadcast": {
+   "ok": true,
+   "citations_checked": 6,
+   "issues": []
+  },
+  "fan": {
+   "ok": true,
+   "citations_checked": 4,
+   "issues": []
+  }
+ },
+ "used": {
+  "Stats Analyst": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Tactician": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Commentator": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Fact-Checker": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Social Producer": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Broadcast Producer": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Fan Producer": "Ollama (local) \u00b7 qwen2.5:7b"
+ },
+ "trace": [
+  {
+   "agent": "Desk",
+   "step": "start",
+   "detail": "match EMP-SCR-3023; providers: Ollama (local) \u00b7 qwen2.5:7b -> Offline templates",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 1,
+   "end_ms": 1,
+   "tokens": null
+  },
+  {
+   "agent": "Tactician",
+   "step": "tool",
+   "detail": "get_team_report(Ember Park)",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 15735,
+   "end_ms": 15735,
+   "tokens": null
+  },
+  {
+   "agent": "Tactician",
+   "step": "tool",
+   "detail": "get_team_report(Saltcombe Rovers)",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 15737,
+   "end_ms": 15737,
+   "tokens": null
+  },
+  {
+   "agent": "Stats Analyst",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 1,
+   "end_ms": 26896,
+   "tokens": 1603
+  },
+  {
+   "agent": "Tactician",
+   "step": "run",
+   "detail": "2 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 4,
+   "end_ms": 46535,
+   "tokens": 3007
+  },
+  {
+   "agent": "Commentator",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 46536,
+   "end_ms": 74711,
+   "tokens": 2420
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "verify",
+   "detail": "rev 0: 33 citations, 7 errors, 0 warnings",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 74712,
+   "end_ms": 74720,
+   "tokens": null
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 74720,
+   "end_ms": 80300,
+   "tokens": 975
+  },
+  {
+   "agent": "Commentator",
+   "step": "handoff",
+   "detail": "revision 1 requested by Fact-Checker",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 80301,
+   "end_ms": 80301,
+   "tokens": null
+  },
+  {
+   "agent": "Commentator",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 80302,
+   "end_ms": 105310,
+   "tokens": 2089
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "verify",
+   "detail": "rev 1: 33 citations, 6 errors, 0 warnings",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 105311,
+   "end_ms": 105313,
+   "tokens": null
+  },
+  {
+   "agent": "Commentator",
+   "step": "handoff",
+   "detail": "revision 2 requested by Fact-Checker",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 105314,
+   "end_ms": 105314,
+   "tokens": null
+  },
+  {
+   "agent": "Commentator",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 105314,
+   "end_ms": 128813,
+   "tokens": 2008
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "verify",
+   "detail": "rev 2: 34 citations, 8 errors, 1 warnings",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 128814,
+   "end_ms": 128816,
+   "tokens": null
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "repair",
+   "detail": "revision budget spent: stripped unsupported sentences",
+   "provider": null,
+   "status": "fallback",
+   "start_ms": 128817,
+   "end_ms": 128817,
+   "tokens": null
+  },
+  {
+   "agent": "Stats Analyst",
+   "step": "repair",
+   "detail": "too much failed verification: replaced with grounded template",
+   "provider": null,
+   "status": "fallback",
+   "start_ms": 128818,
+   "end_ms": 128818,
+   "tokens": null
+  },
+  {
+   "agent": "Tactician",
+   "step": "repair",
+   "detail": "removed 8 unsupported sentence(s)",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 128821,
+   "end_ms": 128821,
+   "tokens": null
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "approve",
+   "detail": "approved after 2 revision(s)",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 128823,
+   "end_ms": 128823,
+   "tokens": null
+  },
+  {
+   "agent": "Producer hub",
+   "step": "handoff",
+   "detail": "approved package sent to 3 audience producers",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 128824,
+   "end_ms": 128824,
+   "tokens": null
+  },
+  {
+   "agent": "Social Producer",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 128830,
+   "end_ms": 136433,
+   "tokens": 1298
+  },
+  {
+   "agent": "Broadcast Producer",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 128825,
+   "end_ms": 146013,
+   "tokens": 1359
+  },
+  {
+   "agent": "Fan Producer",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 128828,
+   "end_ms": 157023,
+   "tokens": 1401
+  },
+  {
+   "agent": "Fan Producer",
+   "step": "repair",
+   "detail": "removed 2 unsupported sentence(s)",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 157027,
+   "end_ms": 157027,
+   "tokens": null
+  },
+  {
+   "agent": "Editor",
+   "step": "publish",
+   "detail": "3 outputs, 3 fully verified",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 157031,
+   "end_ms": 157031,
+   "tokens": null
+  },
+  {
+   "agent": "Desk",
+   "step": "done",
+   "detail": "24 trace events",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 157032,
+   "end_ms": 157032,
+   "tokens": null
+  }
+ ],
+ "providers": [
+  "Ollama (local) \u00b7 qwen2.5:7b",
+  "Offline templates"
+ ],
+ "outage": []
+}

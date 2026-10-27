@@ -1,0 +1,6 @@
+{
+ "text": "**Headline**  \nNorthmere Athletic's Late Surge Snatches 2-2 Draw\n\n1. Finn Yilmaz's early goal boosted Ironvale United's win probability by 24 points [F56].\n2. Despite nearly securing the match with a big chance, Finn Yilmaz's missed opportunity did not significantly alter the likelihood of a win [F68].\n3. Losing Ilya Lomax reduced Ironvale United\u2019s winning probability by 2% [F75].\n4. Jude Haddad and Bram Rourke's goals in the 82nd and 90+6th minutes secured Northmere Athletic's comeback [F80] -> [F85].\n\n**On-screen graphics**\n1. Win-probability swing at 3' [F53]\n2. Penalty awarded at 44' [F59]\n3. Red card for Ilya Lomax at 65' [F72]",
+ "tools": [],
+ "tokens": 1356,
+ "provider": "Ollama (local) \u00b7 qwen2.5:7b"
+}

@@ -1,8 +1,10 @@
 # Submission kit
 
+**Challenge:** The Synthetic Match Insights Engine for Premier League Studio
+
 ## Elevator pitch (paste into the form)
-**Touchline is an AI match-intelligence desk that turns synthetic football event data into explainable, fact-checked stories for every audience.**
-A seeded match engine generates a realistic ~2,200-event match (passes, shots with xG, presses, cards, subs), calibrated by tests against real-world ranges. An analytics layer computes Expected Threat, a live win-probability model and turning points ranked by impact, including counterfactuals ("had it gone in: +23 pts"). Every number is stored as a citable fact with evidence event ids.
+**Touchline is a Synthetic Match Insights Engine for the studio. It turns a synthetic football event stream into real-time insights, key storylines and recaps that are explainable and fact-checked, for every audience.**
+A seeded match engine generates a realistic ~2,200-event match (passes, shots with xG, presses, cards, subs), calibrated by tests against real-world ranges. An analytics layer computes Expected Threat, a live win-probability model and turning points ranked by impact, including counterfactuals ("had it gone in: +23 pts"). Every number is stored as a citable fact with evidence event ids. It runs at full time *or live at any moment* (half-time, 60'...), with live win probability and next-goal odds. Studios also get a timecoded clip-and-graphics cue sheet ranked by impact.
 
 A crew of 8 agents built on **Microsoft Agent Framework** takes it from there:
 - A Stats Analyst and a Tactician run in parallel with function tools over the fact store.
@@ -20,7 +22,7 @@ Models come from **GitHub Models**, with an **Azure AI Foundry** drop-in, local 
 1. **Hook.** "AI can write match content at broadcast speed. It also makes up numbers. Touchline fixes that." Show the scoreboard: Saltcombe 2-3 Duskvale, tags Comeback / Late winner.
 2. **Synthetic data.** Synthetic data tab: calibration table vs. top-flight ranges, events table. "Every event is synthetic, 2,000+ per match, calibrated by tests."
 3. **Live.** Live tab, press **Replay**: the win-probability line and momentum bars build, and the commentary feed fills with agent-written lines.
-4. **Explainable.** Intelligence tab, open a turning-point card: win-prob swing, counterfactual "if it had gone in", the move drawn on the pitch, event ids.
+4. **Real-time + explainable.** Slide *Analyse at* to Half-time: live win probability, next-goal odds, the in-play brief. Back at full time, the Intelligence tab shows key storylines and turning-point cards (win-prob swing, counterfactual, the move on a pitch, event ids).
 5. **The crew.** Agent trace tab: workflow graph (exported from Agent Framework), timeline, tool calls. "Analyst and Tactician run in parallel, Commentator writes, Fact-Checker verifies."
 6. **Trust.** Toggle *Inject a wrong number*, run the crew: the Fact-Checker rejects the draft ("wrote 12.04 but F6 = 1.68") and the Commentator revises.
 7. **Resilience.** Toggle *Simulate outage*, run: the trace shows failover to the next provider, and output still publishes.

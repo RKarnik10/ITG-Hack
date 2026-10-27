@@ -1,0 +1,10 @@
+{
+ "text": "### Ironvale United\n\nIronvale United played a direct, physical style with early balls into the channels, maintaining 47% possession [F9] and completing 550 passes at 82% accuracy [F11]. They pressed with a PPDA of 5.46 [F16] and attempted 38 forward passes (69% of final-third entries) [F25]. Although they had fewer shots (17) than their opponents (10), their xG of 2.57 [F6] indicated quality of their chances. Key moments, such as the first 16 minutes [F89], 39-48 minutes [F92], and 51-63 minutes [F95], saw them dominate with a significantly higher threat level [F90, F93, F96]. They also had three big chances [F13] and were physical, earning a red card [F22] that ultimately affected their play.\n\n### Northmere Athletic\n\nNorthmere Athletic employed a compact mid-block and broke fast on the counter. With 53% possession [F33] and 599 passes at 84% accuracy [F35], their average pass length of 17 yards indicated a slightly less direct play compared to Ironvale United [F47]. Despite their compact nature, they did not capitalize on their chance creation, with only two counters to shot [F38] and no big chances [F37] created. Northmere Athletic's threat was lower during their control periods (0.79 [F99] vs Ironvale's 0.16 [F100]) and they were less physical, failing to dominate possession [F34] in the last few minutes.\n\n### Why momentum shifted\n\nMomentum significantly shifted during the 94-101 minutes [F98] when Northmere Athletic took control. Their PPDA increased slightly from 6.14 earlier in the match to a higher intensity in the closing stages, forcing Ironvale United to play on the back foot [F40]. Despite Ironvale United's initial and mid-match dominance, the increased pressing and tactical changes by Northmere Athletic in the final stages [F39, F44] led to a surge in their threat and a more controlled match situation as time ran out, ultimately resulting in a 2-2 draw [F1].",
+ "tools": [
+  "get_team_report",
+  "get_team_report",
+  "get_momentum"
+ ],
+ "tokens": 2965,
+ "provider": "Ollama (local) \u00b7 qwen2.5:7b"
+}

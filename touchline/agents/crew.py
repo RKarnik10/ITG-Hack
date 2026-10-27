@@ -353,6 +353,7 @@ class AudienceStep(_Step):
             text = {"broadcast": fallback.broadcast, "social": fallback.social}.get(
                 self.audience, lambda st: fallback.fan(st, asdict(pr)))(s)
         text = re.sub(r"^(here (are|is)[^\n]*:\s*)", "", text, flags=re.I).strip()  # drop chatty preambles
+        text = re.sub(r"\s*\[(?!F\d)[A-Z]{1,3}\d+\]", "", text)  # pseudo-citations that aren't fact ids
         template = {"broadcast": fallback.broadcast, "social": fallback.social}.get(
             self.audience, lambda st: fallback.fan(st, asdict(pr)))(s)
         text, mc.checks[self.audience] = guarded(mc, name, text, template)

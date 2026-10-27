@@ -1,0 +1,9 @@
+{
+ "text": "### Saltcombe Rovers\nSaltcombe Rovers played a possession-based, balanced style, controlling 61% of the game with 343 passes (85% success rate) and maintaining a long ball average of 15 yds. Their pressing intensity was moderate, with a PPDA of 3.85, but they successfully regained possession 22 times within the opponent's half, indicating effective pressure. The Rovers attacked primarily through the centre, creating 44% of their final third entries.\n\n### Duskvale Wanderers\nDuskvale Wanderers employed a deep low-block, defensive-oriented approach. They passed the ball 243 times (79% success rate) with an average length of 18 yds, focusing on maintaining a compact shape. They pressed more loosely, with a PPDA of 6.31, but managed only 11 high-regains (won back within 40m of their own goal). The Wanderers relied on set-pieces, generating 0.20 xG, but did not create any big chances.\n\n### Why momentum shifted\nMomentum shifted to Saltcombe Rovers between minutes 2 and 36, where their threat reached 1.90 xT compared to Duskvale Wanderers' 0.30 xT [F84]. Saltcombe Rovers' possession dominance and effective pressing in the opponents' half kept Duskvale Wanderers on the back foot, leading to a 2-0 lead [F1] by the half. Duskvale Wanderers struggled with their low-block, failing to capitalize on set-pieces, and could not mount a sustained threat.",
+ "tools": [
+  "get_team_report",
+  "get_team_report"
+ ],
+ "tokens": 3062,
+ "provider": "Ollama (local) \u00b7 qwen2.5:7b"
+}

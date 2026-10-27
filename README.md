@@ -1,8 +1,10 @@
-# ⚽ Touchline: an AI match-intelligence desk
+# ⚽ Touchline: a Synthetic Match Insights Engine for the studio
 
-**Touchline turns a synthetic football event stream into explainable match intelligence.** A crew of specialist AI agents, orchestrated with **Microsoft Agent Framework**, analyses every pass, shot, press and momentum swing. The crew writes live commentary, a tactical breakdown, a broadcaster brief, a personalised fan recap and social posts. A **Fact-Checker agent** verifies every number against the data before anything is published.
+**Challenge track: *The Synthetic Match Insights Engine for Premier League Studio*** (Inside the Game: Developer Hackathon, Microsoft × Premier League).
 
-> Built for *Inside the Game: Developer Hackathon* (Microsoft × Premier League). All clubs, players and matches are fictional and synthetic.
+**Touchline goes beyond raw statistics.** It takes a synthetic football event stream and produces **real-time insights, key storylines and recaps** for studio and streaming use. A crew of specialist AI agents, orchestrated with **Microsoft Agent Framework**, analyses every pass, shot, press and momentum swing. It works at full time *or live at any moment* (15', 30', half-time, 60', 75'). The crew writes live commentary, a tactical breakdown, a studio brief with a clip-and-graphics cue sheet, a personalised fan recap and social posts. A **Fact-Checker agent** verifies every number against the data before anything goes to air.
+
+> All clubs, players and matches are fictional and synthetic.
 
 ---
 
@@ -11,6 +13,8 @@ Broadcasters, studios and fan apps need match stories *fast*: live lines, studio
 
 * **Explainable.** Every claim cites a fact (`[F12]`). Every fact links to the event ids it was computed from. Every turning point shows *what happened, why it mattered* (win-probability swing, counterfactual) *and the evidence* (the move, drawn on a pitch).
 * **Verified.** A deterministic verifier and a Fact-Checker agent reject drafts with wrong numbers, impossible scorelines or unbacked stats. The draft goes back to the Commentator until it passes.
+* **Real-time.** Choose *Analyse the match at* (15', 30', HT, 60', 75', FT). The engine, win-probability model and crew only see events so far. They produce in-play briefs with live win probability, the chance of another goal, and who is likely to score next.
+* **Studio-ready.** Key storylines (comeback, late winner, smash-and-grab, red-card swing, pressure spells), plus a **cue sheet** of timecoded clips and suggested on-screen graphics, ranked by win-probability impact.
 * **Personalised.** One verified package becomes outputs for the studio, for a fan of either club (beginner or expert, in 7 languages) and for social.
 * **Resilient.** Timeouts, retries, provider failover and template fallbacks mean the desk never goes blank on matchday.
 

@@ -1,0 +1,500 @@
+{
+ "match_id": "IRV-NMA-3096",
+ "persona": {
+  "team": null,
+  "expertise": "beginner",
+  "language": "English"
+ },
+ "insights": "- **Finn Yilmaz pivotal**: His early goal boosted Ironvale United's win probability by 24 points [F56]\n\n- **Missed chance with little impact**: Despite nearly securing the match with a big chance, Finn Yilmaz's missed opportunity did not significantly alter the likelihood of a win [F68]\n- **Red card weakens team**: Losing Ilya Lomax reduced Ironvale United\u2019s winning probability by 2% [F75]\n- **Late equaliser crucial**: Jude Haddad and Bram Rourke's goals in the 82nd and 90+6th minutes secured Northmere Athletic's comeback [F80] -> [F85]",
+ "tactics": "### Ironvale United\n\nIronvale United played a direct, physical style with early balls into the channels, maintaining 47% possession [F9] and completing 550 passes at 82% accuracy [F11]. They pressed with a PPDA of 5.46 [F16] and attempted 38 forward passes (69% of final-third entries) [F25]. Although they had fewer shots (17) than their opponents (10), their xG of 2.57 [F6] indicated quality of their chances. They also had three big chances [F13] and were physical, earning a red card [F22] that ultimately affected their play.\n\n### Northmere Athletic\n\nNorthmere Athletic employed a compact mid-block and broke fast on the counter. With 53% possession [F33] and 599 passes at 84% accuracy [F35], their average pass length of 17 yards indicated a slightly less direct play compared to Ironvale United [F47]. Despite their compact nature, they did not capitalize on their chance creation, with only two counters to shot [F38] and no big chances [F37] created. \n\n### Why momentum shifted\n\nMomentum significantly shifted during the 94-101 minutes [F98] when Northmere Athletic took control. Their PPDA increased slightly from 6.14 earlier in the match to a higher intensity in the closing stages, forcing Ironvale United to play on the back foot [F40]. Despite Ironvale United's initial and mid-match dominance, the increased pressing and tactical changes by Northmere Athletic in the final stages [F39, F44] led to a surge in their threat and a more controlled match situation as time ran out, ultimately resulting in a 2-2 draw [F1].",
+ "live": [
+  {
+   "clock": "3'",
+   "text": "Goal: Finn Yilmaz (Ironvale United), lead after 1-0. Ironvale United win prob 42% -> 66% (swing 24 pts) [F56]; xG 0.33 [F57]; build-up xT 0.00; pattern Regular Play; move: Shot(Finn Yilmaz) [F53].",
+   "event_id": 62
+  },
+  {
+   "clock": "44'",
+   "text": "Penalty: Yusuf Farrow (Ironvale United), lead after 2-0. Ironvale United win prob 66% -> 86% (swing 20 pts) [F62]; xG 0.76 [F63]; build-up xT 0.00; pattern From Free Kick; move: Shot(Yusuf Farrow) [F59].",
+   "event_id": 901
+  },
+  {
+   "clock": "65'",
+   "text": "Red card: Ilya Lomax (Ironvale United), lead after 2-0. Ironvale United win prob 86% -> 74% (swing -12 pts) [F68]; xT 0.00; pattern Regular Play; move: Pass(Noah Ibarra) -> Carry(Elias Kowal) -> Foul Commit(Ilya Lomax) -> Foul Won(Elias Kowal) -> Card(Ilya Lomax) [F65].",
+   "event_id": 1406
+  },
+  {
+   "clock": "82'",
+   "text": "Goal: Jude Haddad (Northmere Athletic), lead after 2-1. Northmere Athletic win prob 0% -> 33% (swing 33 pts) [F84]; xG 0.22 [F81]; build-up xT 0.20; pattern From Corner; move: Pass(Theo Orrin) -> Shot(Jude Haddad) [F83].",
+   "event_id": 1708
+  },
+  {
+   "clock": "90+6'",
+   "text": "Goal: Bram Rourke (Northmere Athletic), lead after 2-2.",
+   "event_id": 1976
+  }
+ ],
+ "recap": "Ironvale United and Northmere Athletic showcased a highly competitive match that saw multiple pivotal moments. Northmere Athletic then made a late surge, scoring two goals in the 82nd and 90+6th minutes by Jude Haddad and Bram Rourke, respectively. Ultimately, despite Ironvale United's earlier dominance, the match ended in a 2-2 draw, illustrating that Northmere Athletic's tactical adjustments and persistence in the final moments salvaged the tie [F1].",
+ "revisions": 2,
+ "verdicts": [
+  {
+   "revision": 0,
+   "ok": false,
+   "issues": [
+    {
+     "sentence": "Early goal by Finn Yilmaz (Ironvale United) gave them a strong lead, boosting their win probability to 66% [F56], despite only having a 0.33 xG chance [F57].",
+     "fact": "F56",
+     "severity": "error",
+     "problem": "wrote 66 but F56 = 24 pts (Win-probability swing for Ironvale United from Finn Yilmaz's goal at 3')"
+    },
+    {
+     "sentence": "Yusuf Farrow's subsequent penalty further solidified their advantage, increasing the win probability to 95% [F62], a massive swing of 20 points.",
+     "fact": "F62",
+     "severity": "error",
+     "problem": "wrote 95 but F62 = 20 pts (Win-probability swing for Ironvale United from Yusuf Farrow's penalty at 44')"
+    },
+    {
+     "sentence": "However, their dominant position was jeopardized when Ilya Lomax received a red card for a foul, reducing their win probability to 96% [F75].",
+     "fact": "F75",
+     "severity": "error",
+     "problem": "wrote 96 but F75 = -2 pts (Win-probability swing for Ironvale United from Ilya Lomax's red card at 65')"
+    },
+    {
+     "sentence": "",
+     "problem": "reviewer: Northmere Athletic's late surge is credited to Jude Haddad and Bram Rourke when the facts do not mention Jude Haddad scoring.",
+     "severity": "review"
+    },
+    {
+     "sentence": "",
+     "problem": "reviewer: The win probability swing for Ironvale United from Finn Yilmaz's goal is stated to be 24 points [F56] but the draft claims 66%.",
+     "severity": "review"
+    },
+    {
+     "sentence": "",
+     "problem": "reviewer: Ilya Lomax's red card is said to reduce Ironvale United's win probability to 96% [F75] but this is not supported by the given facts.",
+     "severity": "review"
+    }
+   ]
+  },
+  {
+   "revision": 1,
+   "ok": false,
+   "issues": [
+    {
+     "sentence": "Ironvale United win prob 75% -> 73% (swing -2 pts) [F75]; xT 0.00; pattern Regular Play; move: Pass(Noah Ibarra) -> Carry(Elias Kowal) -> Foul Commit(Ilya Lomax) -> Foul Won(Elias Kowal) -> Card(Ilya Lomax) [F65].",
+     "problem": "number 73 is not backed by any fact",
+     "severity": "warning"
+    },
+    {
+     "sentence": "Early on, Finn Yilmaz's goal for Ironvale United gave them a strong lead, boosting their win probability to 66% [F56], despite the goal having a meager xG value of 0.33 [F57].",
+     "fact": "F56",
+     "severity": "error",
+     "problem": "wrote 66 but F56 = 24 pts (Win-probability swing for Ironvale United from Finn Yilmaz's goal at 3')"
+    },
+    {
+     "sentence": "Yusuf Farrow's subsequent penalty further solidified their advantage, increasing the win probability to 95% [F62], a significant swing of 20 points.",
+     "fact": "F62",
+     "severity": "error",
+     "problem": "wrote 95 but F62 = 20 pts (Win-probability swing for Ironvale United from Yusuf Farrow's penalty at 44')"
+    },
+    {
+     "sentence": "However, their lead was significantly reduced when Ilya Lomax was shown a red card for a foul, lowering their win probability to 73% [F75].",
+     "fact": "F75",
+     "severity": "error",
+     "problem": "wrote 73 but F75 = -2 pts (Win-probability swing for Ironvale United from Ilya Lomax's red card at 65')"
+    },
+    {
+     "sentence": "However, their lead was significantly reduced when Ilya Lomax was shown a red card for a foul, lowering their win probability to 73% [F75].",
+     "problem": "number 73 is not backed by any fact",
+     "severity": "warning"
+    }
+   ]
+  },
+  {
+   "revision": 2,
+   "ok": false,
+   "issues": [
+    {
+     "sentence": "Ironvale United win prob 66% -> 86% (swing 20 pts) [F62]; xG 0.76 [F63]; build-up xT 0.00; pattern From Free Kick; move: Shot(Yusuf Farrow) [F59].",
+     "problem": "number 86 is not backed by any fact",
+     "severity": "warning"
+    },
+    {
+     "sentence": "Ironvale United win prob 86% -> 74% (swing -12 pts) [F68]; xT 0.00; pattern Regular Play; move: Pass(Noah Ibarra) -> Carry(Elias Kowal) -> Foul Commit(Ilya Lomax) -> Foul Won(Elias Kowal) -> Card(Ilya Lomax) [F65].",
+     "problem": "number 86 is not backed by any fact",
+     "severity": "warning"
+    },
+    {
+     "sentence": "Ironvale United win prob 86% -> 74% (swing -12 pts) [F68]; xT 0.00; pattern Regular Play; move: Pass(Noah Ibarra) -> Carry(Elias Kowal) -> Foul Commit(Ilya Lomax) -> Foul Won(Elias Kowal) -> Card(Ilya Lomax) [F65].",
+     "problem": "number 74 is not backed by any fact",
+     "severity": "warning"
+    },
+    {
+     "sentence": "Northmere Athletic win prob 33% -> 50% (swing 17 pts) [F90]; xG 0.10 [F87]; build-up xT 0.08; pattern Regular Play; move: Pass(Elias Kowal) -> Carry(Theo Orrin) -> Carry(Theo Orrin) -> Pass(Theo Orrin) -> Shot(Bram Rourke) [F83].",
+     "fact": "F90",
+     "severity": "error",
+     "problem": "no number in the sentence matches F90 = 0.89 (Ironvale United threat (xT+xG) during 1'-16' spell)"
+    },
+    {
+     "sentence": "Northmere Athletic win prob 33% -> 50% (swing 17 pts) [F90]; xG 0.10 [F87]; build-up xT 0.08; pattern Regular Play; move: Pass(Elias Kowal) -> Carry(Theo Orrin) -> Carry(Theo Orrin) -> Pass(Theo Orrin) -> Shot(Bram Rourke) [F83].",
+     "problem": "number 50 is not backed by any fact",
+     "severity": "warning"
+    },
+    {
+     "sentence": "Early on, Finn Yilmaz's goal for Ironvale United gave them a strong lead, boosting their win probability to 66% [F56], despite the goal having a meager xG value of 0.33 [F57].",
+     "fact": "F56",
+     "severity": "error",
+     "problem": "wrote 66 but F56 = 24 pts (Win-probability swing for Ironvale United from Finn Yilmaz's goal at 3')"
+    },
+    {
+     "sentence": "Yusuf Farrow's subsequent penalty further solidified their advantage, increasing the win probability to 86% [F62], a significant swing of 20 points.",
+     "fact": "F62",
+     "severity": "error",
+     "problem": "wrote 86 but F62 = 20 pts (Win-probability swing for Ironvale United from Yusuf Farrow's penalty at 44')"
+    },
+    {
+     "sentence": "Yusuf Farrow's subsequent penalty further solidified their advantage, increasing the win probability to 86% [F62], a significant swing of 20 points.",
+     "problem": "number 86 is not backed by any fact",
+     "severity": "warning"
+    },
+    {
+     "sentence": "However, their lead was significantly reduced when Ilya Lomax was shown a red card for a foul, lowering their win probability to 74% [F68].",
+     "fact": "F68",
+     "severity": "error",
+     "problem": "wrote 74 but F68 = 0 pts (Win-probability swing for Ironvale United from Finn Yilmaz's big chance missed at 59')"
+    },
+    {
+     "sentence": "However, their lead was significantly reduced when Ilya Lomax was shown a red card for a foul, lowering their win probability to 74% [F68].",
+     "problem": "number 74 is not backed by any fact",
+     "severity": "warning"
+    },
+    {
+     "sentence": "These goals stabilized Northmere Athletic\u2019s position, giving them a 50% win probability [F90].",
+     "fact": "F90",
+     "severity": "error",
+     "problem": "no number in the sentence matches F90 = 0.89 (Ironvale United threat (xT+xG) during 1'-16' spell)"
+    },
+    {
+     "sentence": "These goals stabilized Northmere Athletic\u2019s position, giving them a 50% win probability [F90].",
+     "problem": "number 50 is not backed by any fact",
+     "severity": "warning"
+    }
+   ]
+  }
+ ],
+ "outputs": {
+  "broadcast": "**Headline**  \nNorthmere Athletic's Late Surge Snatches 2-2 Draw\n\n1. Finn Yilmaz's early goal boosted Ironvale United's win probability by 24 points [F56].\n2. Despite nearly securing the match with a big chance, Finn Yilmaz's missed opportunity did not significantly alter the likelihood of a win [F68].\n3. Losing Ilya Lomax reduced Ironvale United\u2019s winning probability by 2% [F75].\n4. Jude Haddad and Bram Rourke's goals in the 82nd and 90+6th minutes secured Northmere Athletic's comeback [F80] -> [F85].\n\n**On-screen graphics**\n1. Win-probability swing at 3' [F53]\n2. Penalty awarded at 44' [F59]\n3. Red card for Ilya Lomax at 65' [F72]",
+  "fan": "Ironvale United started strong, with Finn Yilmaz scoring an early goal that significantly boosted their chances of winning [F53, F54, F55, F56]. Yilmaz\u2019s goal not only opened the scoring but also raised the likelihood of a victory by 24 points [F56]. However, Northmere Athletic showed resilience, rallying late in the game. Jude Haddad and Bram Rourke scored crucial late goals in the 82nd and 90+6th minutes respectively, demonstrating the importance of perseverance and tactical adjustment [F80, F85]. Despite Finn Yilmaz\u2019s missed opportunity which left their win probability unchanged [F65, F66, F67, F68], the match ended in a 2-2 draw, highlighting how late goals can completely turn the tide of a match [F83, F84, F85].",
+  "social": "### Post 1: Full-Time Score Post\n**Final Score: Ironvale United 2 - 2 Northmere Athletic**\nThe match saw early dominance from Ironvale United, but a late rally by Northmere Athletic secured a tie. Goals from Finn Yilmaz and Yusuf Farrow for Ironvale United were met by efforts from Jude Haddad and Bram Rourke late in the game. \ud83c\udfc6\u26bd #MatchSummary[F1]\n\n### Post 2: Stat-of-the-Match Post\n**Match Stat: 61% - Chance xG of Jude Haddad's Equalizer**\nJude Haddad\u2019s 82nd-minute goal was not just a critical equalizer but came with an xG of 0.22. His shot was the key moment that turned the tide for Northmere Athletic. \u23f0 \u26bd #KeyStat[F81]\n\n### Post 3: Turning-Point Post\n**Turning Point: 3' Goal by Finn Yilmaz**\nFinn Yilmaz\u2019s goal at the 3rd minute boosted Ironvale United\u2019s win probability from 42% to 66%, a swing of 24 points. This early blow to the defense laid the groundwork for Ironvale United\u2019s lead. \u23f0 \u26bd #TurningPoint[F53]"
+ },
+ "checks": {
+  "insights": {
+   "ok": true,
+   "citations_checked": 5,
+   "issues": []
+  },
+  "tactics": {
+   "ok": true,
+   "citations_checked": 17,
+   "issues": [
+    {
+     "sentence": "They pressed with a PPDA of 5.46 [F16] and attempted 38 forward passes (69% of final-third entries) [F25].",
+     "problem": "number 38 is not backed by any fact",
+     "severity": "warning"
+    }
+   ]
+  },
+  "recap": {
+   "ok": true,
+   "citations_checked": 1,
+   "issues": []
+  },
+  "broadcast": {
+   "ok": true,
+   "citations_checked": 8,
+   "issues": []
+  },
+  "fan": {
+   "ok": true,
+   "citations_checked": 14,
+   "issues": []
+  },
+  "social": {
+   "ok": true,
+   "citations_checked": 3,
+   "issues": [
+    {
+     "sentence": "**Match Stat: 61% - Chance xG of Jude Haddad's Equalizer**",
+     "problem": "number 61 is not backed by any fact",
+     "severity": "warning"
+    }
+   ]
+  }
+ },
+ "used": {
+  "Stats Analyst": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Tactician": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Commentator": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Fact-Checker": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Broadcast Producer": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Fan Producer": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Social Producer": "Ollama (local) \u00b7 qwen2.5:7b"
+ },
+ "trace": [
+  {
+   "agent": "Desk",
+   "step": "start",
+   "detail": "match IRV-NMA-3096; providers: Ollama (local) \u00b7 qwen2.5:7b -> Offline templates",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 1,
+   "end_ms": 1,
+   "tokens": null
+  },
+  {
+   "agent": "Tactician",
+   "step": "tool",
+   "detail": "get_team_report(Ironvale United)",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 3757,
+   "end_ms": 3757,
+   "tokens": null
+  },
+  {
+   "agent": "Tactician",
+   "step": "tool",
+   "detail": "get_team_report(Northmere Athletic)",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 3758,
+   "end_ms": 3758,
+   "tokens": null
+  },
+  {
+   "agent": "Tactician",
+   "step": "tool",
+   "detail": "get_momentum()",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 3758,
+   "end_ms": 3758,
+   "tokens": null
+  },
+  {
+   "agent": "Stats Analyst",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 1,
+   "end_ms": 13042,
+   "tokens": 1573
+  },
+  {
+   "agent": "Tactician",
+   "step": "run",
+   "detail": "3 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 4,
+   "end_ms": 34207,
+   "tokens": 2965
+  },
+  {
+   "agent": "Commentator",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 34210,
+   "end_ms": 72282,
+   "tokens": 2762
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "verify",
+   "detail": "rev 0: 23 citations, 3 errors, 0 warnings",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 72283,
+   "end_ms": 72287,
+   "tokens": null
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 72287,
+   "end_ms": 78368,
+   "tokens": 918
+  },
+  {
+   "agent": "Commentator",
+   "step": "handoff",
+   "detail": "revision 1 requested by Fact-Checker",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 78369,
+   "end_ms": 78369,
+   "tokens": null
+  },
+  {
+   "agent": "Commentator",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 78369,
+   "end_ms": 113754,
+   "tokens": 2335
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "verify",
+   "detail": "rev 1: 20 citations, 3 errors, 2 warnings",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 113757,
+   "end_ms": 113760,
+   "tokens": null
+  },
+  {
+   "agent": "Commentator",
+   "step": "handoff",
+   "detail": "revision 2 requested by Fact-Checker",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 113761,
+   "end_ms": 113761,
+   "tokens": null
+  },
+  {
+   "agent": "Commentator",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 113761,
+   "end_ms": 145542,
+   "tokens": 2223
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "verify",
+   "detail": "rev 2: 20 citations, 5 errors, 7 warnings",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 145543,
+   "end_ms": 145546,
+   "tokens": null
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "repair",
+   "detail": "revision budget spent: stripped unsupported sentences",
+   "provider": null,
+   "status": "fallback",
+   "start_ms": 145546,
+   "end_ms": 145546,
+   "tokens": null
+  },
+  {
+   "agent": "Stats Analyst",
+   "step": "repair",
+   "detail": "removed 1 unsupported sentence(s)",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 145547,
+   "end_ms": 145547,
+   "tokens": null
+  },
+  {
+   "agent": "Tactician",
+   "step": "repair",
+   "detail": "removed 3 unsupported sentence(s)",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 145550,
+   "end_ms": 145550,
+   "tokens": null
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "approve",
+   "detail": "approved after 2 revision(s)",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 145552,
+   "end_ms": 145552,
+   "tokens": null
+  },
+  {
+   "agent": "Producer hub",
+   "step": "handoff",
+   "detail": "approved package sent to 3 audience producers",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 145553,
+   "end_ms": 145553,
+   "tokens": null
+  },
+  {
+   "agent": "Broadcast Producer",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 145553,
+   "end_ms": 155056,
+   "tokens": 1356
+  },
+  {
+   "agent": "Fan Producer",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 145556,
+   "end_ms": 164512,
+   "tokens": 1360
+  },
+  {
+   "agent": "Social Producer",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 145559,
+   "end_ms": 177500,
+   "tokens": 1418
+  },
+  {
+   "agent": "Editor",
+   "step": "publish",
+   "detail": "3 outputs, 3 fully verified",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 177504,
+   "end_ms": 177504,
+   "tokens": null
+  },
+  {
+   "agent": "Desk",
+   "step": "done",
+   "detail": "24 trace events",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 177504,
+   "end_ms": 177504,
+   "tokens": null
+  }
+ ],
+ "providers": [
+  "Ollama (local) \u00b7 qwen2.5:7b",
+  "Offline templates"
+ ],
+ "outage": []
+}

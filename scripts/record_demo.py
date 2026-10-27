@@ -50,6 +50,16 @@ async def scroll(page: Page, px: int, steps: int = 6, pause: float = 0.5) -> Non
         await page.wait_for_timeout(int(pause * 1000))
 
 
+async def moment(page: Page, steps: int) -> None:
+    """Move the sidebar 'Analyse the match at' slider by `steps` options."""
+    handle = page.locator("[data-testid='stSidebar'] [role='slider']").first
+    await handle.focus()
+    for _ in range(abs(steps)):
+        await page.keyboard.press("ArrowLeft" if steps < 0 else "ArrowRight")
+        await page.wait_for_timeout(700)
+    await page.wait_for_timeout(2500)
+
+
 async def toggle(page: Page, label: str) -> None:
     await page.get_by_text(label, exact=False).first.click()
     await page.wait_for_timeout(2500)
@@ -69,42 +79,49 @@ async def record(url: str, out: Path) -> None:
         main = page.locator("section.main, [data-testid='stMain']").first
         await main.hover()
 
-        await caption(page, "⚽ <b>Touchline</b>: an AI match-intelligence desk.<br>"
+        await caption(page, "⚽ <b>Touchline</b>: a Synthetic Match Insights Engine for the studio.<br>"
                             "Synthetic match → explainable analytics → a fact-checked multi-agent crew", 5)
         await page.get_by_role("button", name="▶ Replay").click()
-        await caption(page, "📺 Live replay: win probability, momentum and agent-written commentary build minute by minute", 11)
+        await caption(page, "📺 Live replay: win probability, momentum and agent-written commentary build minute by minute", 8)
+
+        await moment(page, -3)  # Full time -> Half-time
         await tab(page, "🧠 Intelligence")
-        await caption(page, "🧠 Every turning point explained: the win-probability swing, the counterfactual "
-                            "(“if it had gone in”), and the move behind it", 4)
-        await scroll(page, 900, steps=6, pause=0.7)
-        await caption(page, "Analyst and Tactician reports: every number carries a fact id, verified against the data", 4)
-        await scroll(page, 1100, steps=4, pause=0.6)
+        await caption(page, "⏱️ Real-time: analyse at half-time. The engine and crew only see events so far.<br>"
+                            "Live win probability and next-goal odds", 6)
+        await tab(page, "🎙️ Studio")
+        await caption(page, "🎙️ The half-time studio brief, an in-play report, and a clip & graphics cue sheet", 6)
+        await moment(page, +3)  # back to Full time
+
+        await tab(page, "🧠 Intelligence")
+        await caption(page, "🧠 Key storylines, and every turning point explained: the win-probability swing, "
+                            "the counterfactual, and the move behind it", 4)
+        await scroll(page, 1000, steps=5, pause=0.6)
         await page.mouse.wheel(0, -6000)
         await tab(page, "🎙️ Studio")
-        await caption(page, "🎙️ One verified package becomes a broadcaster brief, a fan recap and social posts.<br>"
-                            "Hover a chip to see the fact behind any number", 3)
+        await caption(page, "One verified package: broadcaster brief, fan recap, social posts. Hover a chip "
+                            "to see the fact behind any number", 3)
         chip = page.locator(".cite").first
         if await chip.count():
             await chip.hover()
-        await page.wait_for_timeout(3500)
+        await page.wait_for_timeout(3000)
         await tab(page, "🤖 Agent trace")
-        await caption(page, "🤖 8 agents on <b>Microsoft Agent Framework</b>: parallel analysts, a Commentator, "
-                            "a Fact-Checker revise loop, and 3 audience producers", 4)
-        await scroll(page, 700, steps=4, pause=0.8)
+        await caption(page, "🤖 8 agents on <b>Microsoft Agent Framework</b>: parallel analysts, a Fact-Checker "
+                            "revise loop, 3 audience producers", 3)
+        await scroll(page, 700, steps=4, pause=0.7)
         await page.mouse.wheel(0, -4000)
 
         await toggle(page, "Inject a wrong number")
         await tab(page, "🤖 Agent trace")
         await scroll(page, 700, steps=2, pause=0.4)
-        await caption(page, "🛡️ Trust: we corrupt one number in the draft, the Fact-Checker catches it "
-                            "and sends it back for revision", 7)
+        await caption(page, "🛡️ Trust: we corrupt one number in the draft. The Fact-Checker catches it "
+                            "and sends it back for revision", 6)
         await page.mouse.wheel(0, -4000)
         await toggle(page, "Inject a wrong number")
 
         await toggle(page, "outage")
         await page.get_by_role("button", name="▶ Run the AI crew").click()
-        await caption(page, "🔁 Resilience: the model provider goes down mid-show. The crew fails over "
-                            "and still publishes verified output", 9)
+        await caption(page, "🔁 Resilience: the model provider goes down on matchday. The crew fails over "
+                            "and still publishes verified output", 7)
         await toggle(page, "outage")
 
         await page.get_by_text(f"{away_name} fan", exact=True).click()
@@ -114,9 +131,9 @@ async def record(url: str, out: Path) -> None:
         await page.get_by_role("option", name="Spanish").click()
         await page.wait_for_timeout(2500)
         await tab(page, "🎙️ Studio")
-        await caption(page, "❤️ Personalised: the same match for an away fan, beginner level, in Spanish", 7)
+        await caption(page, "❤️ Personalised: the same match for an away fan, beginner level, in Spanish", 6)
         await tab(page, "🧪 Synthetic data")
-        await caption(page, "🧪 100% synthetic, about 2,200 events per match, calibrated against real-world ranges by tests", 6)
+        await caption(page, "🧪 100% synthetic, about 2,200 events per match, calibrated against real-world ranges by tests", 5)
         await caption(page, "<b>Touchline</b> · Microsoft Agent Framework · GitHub Models · Azure AI Foundry & Container Apps ready", 4)
         video = page.video
         await ctx.close()

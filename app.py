@@ -17,7 +17,7 @@ import streamlit as st
 from touchline import viz
 from touchline.agents.crew import Persona, ask, start_crew, workflow_dot
 from touchline.agents.llm import available_providers
-from touchline.analytics.store import MatchStore
+from touchline.analytics.store import MOMENTS, MatchStore, cut_match
 from touchline.sim.engine import simulate_match
 from touchline.sim.teams import CLUBS
 
@@ -26,7 +26,7 @@ RUNS = ROOT / "cache" / "runs"
 DEMO_INDEX = ROOT / "cache" / "demo_matches.json"
 LANGS = ["English", "Spanish", "French", "Portuguese", "German", "Hindi", "Japanese"]
 
-st.set_page_config(page_title="Touchline · match intelligence", page_icon="⚽", layout="wide")
+st.set_page_config(page_title="Touchline · Synthetic Match Insights Engine", page_icon="⚽", layout="wide")
 st.markdown("""
 <style>
 .block-container {padding-top: 1.2rem; max-width: 1400px;}
@@ -41,15 +41,17 @@ st.markdown("""
 .feed.home {border-color: #3987e5;} .feed.away {border-color: #d95926;}
 .feed .clk {font-weight: 700; color: #f0efec; margin-right: 6px;}
 .muted {color: #9a998f; font-size: .85rem;}
+.live {display: inline-block; background: #d03b3b; color: #fff; border-radius: 6px; padding: 1px 10px;
+        font-weight: 700; font-size: .8rem; letter-spacing: .06em;}
 .badge-ok {color: #0ca30c; font-weight: 600;} .badge-warn {color: #ec835a; font-weight: 600;}
 </style>""", unsafe_allow_html=True)
 
 
 # ------------------------------------------------------------------ data
 @st.cache_resource(show_spinner=False)
-def get_store(home: str, away: str, seed: int) -> MatchStore:
+def get_store(home: str, away: str, seed: int, moment: str = "Full time") -> MatchStore:
     df, meta = simulate_match(home, away, seed)
-    return MatchStore(df, meta)
+    return MatchStore(*cut_match(df, meta, moment))
 
 
 @st.cache_data(show_spinner=False)
@@ -89,9 +91,10 @@ def cite(text: str, store: MatchStore) -> str:
             title = html.escape(f"{fid}: {f.label} = {f.show()}") if f else f"{fid}: unknown fact"
             out.append(f'<span class="cite{"" if f else " bad"}" title="{title}">{fid}</span>')
         return "".join(out)
-    safe = html.escape(text or "").replace("&#x27;", "'")
-    safe = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", safe)
-    safe = re.sub(r"^### (.+)$", r"<h4>\1</h4>", safe, flags=re.M)
+    text = re.sub(r"\s*\[(?!F\d)[A-Z]{1,3}\d+\]", "", text or "")       # pseudo-citations from the model
+    safe = html.escape(text).replace("&#x27;", "'")
+    safe = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", safe).replace("**", "")
+    safe = re.sub(r"^#{1,4}\s*(.+)$", r"<b>\1</b>", safe, flags=re.M)
     safe = re.sub(r"\[(F\d+(?:\s*,\s*F\d+)*)\]", chip, safe)
     safe = re.sub(r"^\s*[-*] ", "• ", safe, flags=re.M)
     return safe.replace("\n", "<br>")
@@ -113,7 +116,7 @@ def badge(check: dict | None) -> str:
 # ------------------------------------------------------------------ sidebar
 with st.sidebar:
     st.markdown("## ⚽ Touchline")
-    st.caption("AI match-intelligence desk · synthetic data · Microsoft Agent Framework")
+    st.caption("Synthetic Match Insights Engine for the studio · Microsoft Agent Framework")
     demos = demo_matches()
     labels = [d["label"] + (f"  ·  {', '.join(d.get('tags', []))}" if d.get("tags") else "") for d in demos]
     choice = st.selectbox("Match", range(len(demos) + 1), format_func=lambda i: labels[i] if i < len(demos) else "🎲 Simulate a new match…")
@@ -125,7 +128,9 @@ with st.sidebar:
         home = c1.selectbox("Home", codes, format_func=lambda c: CLUBS[c].name)
         away = c2.selectbox("Away", [c for c in codes if c != home], format_func=lambda c: CLUBS[c].name)
         seed = int(st.number_input("Seed", 1, 99999, 42))
-    store = get_store(home, away, seed)
+    moment = st.select_slider("Analyse the match at", options=list(MOMENTS), value="Full time",
+                              help="Real-time mode: the engine and the crew only see events up to this moment.")
+    store = get_store(home, away, seed, moment)
     meta = store.meta
 
     st.markdown("#### Personalise")
@@ -167,7 +172,8 @@ run = load_run(meta["match_id"], persona, flags)
 h, a = meta["score"]
 c1, c2, c3 = st.columns([5, 2, 5])
 c1.markdown(f'<div class="team" style="text-align:right;color:{viz.HOME}">{meta["home_name"]}</div>', unsafe_allow_html=True)
-c2.markdown(f'<div class="score">{h} – {a}</div>', unsafe_allow_html=True)
+c2.markdown(f'<div class="score">{h} – {a}</div>' + (f'<div style="text-align:center"><span class="live">● LIVE · {moment.upper()}</span></div>'
+            if store.live else '<div style="text-align:center" class="muted">FULL TIME</div>'), unsafe_allow_html=True)
 c3.markdown(f'<div class="team" style="color:{viz.AWAY}">{meta["away_name"]}</div>', unsafe_allow_html=True)
 chips = "".join(f'<span class="chip">{t}</span>' for t in store.storyline["tags"])
 st.markdown(f'<div style="text-align:center">{chips}<span class="chip">synthetic match · seed {seed}</span>'
@@ -234,6 +240,40 @@ with tab_live:
 
 # ------------------------------------------------------------------ intelligence
 with tab_intel:
+    if store.live:
+        f = store.f_live
+        st.markdown(f"### Right now, at {moment}")
+        k1, k2, k3, k4 = st.columns(4)
+        k1.metric(f"{meta['home_name']} win", store.facts[f['wp_home']].show())
+        k2.metric("Draw", store.facts[f['wp_draw']].show())
+        k3.metric(f"{meta['away_name']} win", store.facts[f['wp_away']].show())
+        k4.metric("Another goal?", store.facts[f['more']].show(),
+                  f"next: {meta['home'] if store.facts[f['next_home']].value >= store.facts[f['next_away']].value else meta['away']}",
+                  delta_color="off")
+    st.markdown("### Key storylines")
+    lines = []
+    goals = store.df[(store.df.type == "Shot") & (store.df.outcome == "Goal")]
+    fx = {t: store.facts[store.f_team[t]["xg"]].value for t in (meta["home"], meta["away"])}
+    for tag in store.storyline["tags"]:
+        if tag == "Comeback":
+            lines.append(f"**Comeback**: {poss(store.names[meta['home'] if h > a else meta['away']])} win probability fell as low as "
+                         f"{max(100 * store.wp[:, 0 if h > a else 2].min(), 0.1):.1f}% before they turned it round.")
+        elif tag in ("Late winner", "Late equaliser") and len(goals):
+            g = goals.iloc[-1]
+            lines.append(f"**{tag}**: {g.player} at {g.clock} for {store.names[g.team]}.")
+        elif tag == "Smash and grab":
+            w = meta["home"] if h > a else meta["away"]
+            lines.append(f"**Smash and grab**: {store.names[w]} won despite xG {fx[w]:.2f} vs "
+                         f"{fx[meta['away'] if w == meta['home'] else meta['home']]:.2f}.")
+        elif tag == "Red-card swing":
+            r = next(t for t in store.turning_points if t["kind"] == "Red card")
+            lines.append(f"**Red-card swing**: {r['player']} ({r['team_name']}) sent off at {r['clock']}.")
+        elif tag == "Goal-fest":
+            lines.append(f"**Goal-fest**: {h + a} goals.")
+    for sp in store.spells[:3]:
+        lines.append(f"**Pressure spell**: {store.names[sp['team']]} dominated {sp['start']}'–{sp['end']}' "
+                     f"(threat {sp['threat_for']:.2f} vs {sp['threat_against']:.2f}).")
+    st.markdown("\n".join(f"- {ln}" for ln in lines) or "_No standout storyline yet._")
     st.markdown("### Turning points: what happened, why it mattered, and the evidence")
     for i in range(0, len(store.turning_points), 2):
         cols = st.columns(2)
@@ -301,8 +341,22 @@ with tab_studio:
                 st.markdown(badge(run["checks"].get(key)) + "<br>" + cite(run["outputs"].get(key, ""), store), unsafe_allow_html=True)
                 st.caption("by " + run["used"].get({"broadcast": "Broadcast Producer", "fan": "Fan Producer",
                                                      "social": "Social Producer"}[key], "?"))
+        st.markdown("#### 🎬 Studio cue sheet: clips and graphics, ranked by impact")
+        cues = []
+        for rank, tp in enumerate(sorted(store.turning_points, key=lambda t: -t["impact"]), 1):
+            ev = store.df[store.df.event_id == tp["event_id"]].iloc[0]
+            start = store.df[store.df.event_id == tp["evidence"][0]].iloc[0]
+            graphic = ("Win-probability swing" if tp["kind"] in ("Goal", "Penalty", "Red card")
+                       else "Counterfactual: 'if it had gone in'")
+            cues.append({"#": rank, "Clock": tp["clock"], "Clip in": f"{int(start.t // 60):02d}:{int(start.t % 60):02d}",
+                         "Clip out": f"{int((ev.t + 6) // 60):02d}:{int((ev.t + 6) % 60):02d}", "Moment": f"{tp['kind']}: {tp['player']}",
+                         "Team": tp["team_name"], "WP swing": f"{tp['dwp']:+d} pts" if tp["counterfactual_dwp"] is None
+                         else f"(+{tp['counterfactual_dwp']} if scored)",
+                         "Graphic": graphic + (" + xT build-up map" if tp["buildup_xt"] > 0.05 else ""),
+                         "Events": f"#{tp['evidence'][0]}–#{tp['event_id']}"})
+        st.dataframe(pd.DataFrame(cues), hide_index=True, use_container_width=True)
         with st.container(border=True):
-            st.markdown("#### 📝 Match report (Commentator, approved by Fact-Checker)")
+            st.markdown("#### 📝 " + ("In-play report" if store.live else "Match report") + " (Commentator, approved by Fact-Checker)")
             st.markdown(badge(run["checks"].get("recap")) + "<br>" + cite(run["recap"], store), unsafe_allow_html=True)
 
 # ------------------------------------------------------------------ trace

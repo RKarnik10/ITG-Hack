@@ -1,0 +1,6 @@
+{
+ "text": "- Saltcombe Rovers' xG of 1.43 [F12] is higher than their possession of 61% [F15], but the draft does not contradict this.\n- Duskvale Wanderers' xG of 0.22 [F36] is low relative to their possession of 39% [F39], but is not contradicted here.\n- The draft does not mention the second half penalty, so the claim about it is not supported by facts.\n- Saltcombe Rovers winning probability after Leon Quinlan's big chance missed at 12' should be lower than 72%, but the draft claims 72%. This is a contradiction as he missed an opportunity to increase the lead.\n- The fact about Duskvale Wanderers' 4% win probability [F80] is not mentioned in the draft, but this is not contradictory to anything stated.\n- The 51% chance for Saltcombe Rovers for the next goal [F6] is a new claim not supported by the facts.\n\nNONE",
+ "tools": [],
+ "tokens": 1010,
+ "provider": "Ollama (local) \u00b7 qwen2.5:7b"
+}

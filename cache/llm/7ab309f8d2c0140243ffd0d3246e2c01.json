@@ -1,0 +1,9 @@
+{
+ "text": "### Ember Park\nEmber Park played with a chaotic gegenpress style, showcasing 59% possession [F9] and attempting 670 passes at 82% completion [F11]. Their pressing was intense, with a PPDA of 3.77 [F16], and 37 high regains [F15] within 40 meters of their opponents' goal. They predominantly attacked through the left channel [F26] and aimed for the center [F27], with 29% of their passes in the final third [F25]. This aggressive approach led to 16 shots [F7] and 2 big chances [F13], but they struggled to capitalize fully.\n\n### Saltcombe Rovers\nSaltcombe Rovers exhibited a well-drilled, balanced style with 41% possession [F33] and 472 passes at 75% completion [F35], aiming to control the midfield. They pressed more defensively, allowing higher PPDA at 5.87 [F40] and only regaining possession 14 times within 40 meters of their opponents' goal [F39]. Their attacks were centered, with 33 final-third entries [F49], 54% aimed at the center [F51]. Despite this, they managed just 5 shots [F31], with no big chances [F37] and only a single counter-attack [F38].\n\n### Why momentum shifted\nMomentum swung towards Ember Park during key spells. From minutes 14-22 [F90], to 24-30 [F93], and most significantly from 37-64 [F96], their aggressive pressing and high turnover rates [F15] overwhelmed Saltcombe Rovers. During these periods, Ember Park\u2019s threat was consistently higher, with moments of intense pressure and possession. This contrasted with Saltcombe Rovers' steady but limited pressure, leading to a significant shift in control and dominance.",
+ "tools": [
+  "get_team_report",
+  "get_team_report"
+ ],
+ "tokens": 3007,
+ "provider": "Ollama (local) \u00b7 qwen2.5:7b"
+}

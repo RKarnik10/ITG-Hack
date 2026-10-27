@@ -86,8 +86,12 @@ def recap(store: MatchStore) -> str:
     n, c = store.names, store.c
     win, lose = _lead(store)
     h, a = store.meta["score"]
-    head = (f"{n[win]} beat {n[lose]} {max(h, a)}-{min(h, a)} [{store.f_score}]." if win
-            else f"{n[store.home]} and {n[store.away]} drew {h}-{a} [{store.f_score}].")
+    if store.live:
+        head = (f"At {store.live}, {n[win]} lead {n[lose]} {max(h, a)}-{min(h, a)} [{store.f_score}]." if win
+                else f"At {store.live}, {n[store.home]} and {n[store.away]} are level at {h}-{a} [{store.f_score}].")
+    else:
+        head = (f"{n[win]} beat {n[lose]} {max(h, a)}-{min(h, a)} [{store.f_score}]." if win
+                else f"{n[store.home]} and {n[store.away]} drew {h}-{a} [{store.f_score}].")
     fh, fa = store.f_team[store.home], store.f_team[store.away]
     body = (f" {n[store.home]} produced xG {c(fh['xg'])} from {c(fh['shots'])} shots; {n[store.away]} {c(fa['xg'])} "
             f"from {c(fa['shots'])}.")
@@ -95,6 +99,11 @@ def recap(store: MatchStore) -> str:
         tp = max(store.turning_points, key=lambda t: abs(t["dwp"]))
         body += (f" The biggest swing came at {tp['clock']} when {tp['player']}'s {tp['kind'].lower()} moved "
                  f"{_p(tp['team_name'])} win probability from {c(tp['facts']['wp_before'])} to {c(tp['facts']['wp_after'])}.")
+    if store.live:
+        f = store.f_live
+        body += (f" Live win probability: {n[store.home]} {c(f['wp_home'])}, {n[store.away]} {c(f['wp_away'])}. "
+                 f"Watch for the next goal: {c(f['more'])} chance of another, {n[store.home]} {c(f['next_home'])} "
+                 f"to score it.")
     return head + body
 
 
