@@ -6,6 +6,12 @@
 
 > All clubs, players and matches are fictional and synthetic.
 
+![Live replay](docs/live.png)
+
+| Intelligence | Studio | Agent trace |
+|---|---|---|
+| ![Intelligence](docs/intelligence.png) | ![Studio](docs/studio.png) | ![Agent trace](docs/trace.png) |
+
 ---
 
 ## The problem

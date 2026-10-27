@@ -52,7 +52,7 @@ async def scroll(page: Page, px: int, steps: int = 6, pause: float = 0.5) -> Non
 
 async def moment(page: Page, steps: int) -> None:
     """Move the sidebar 'Analyse the match at' slider by `steps` options."""
-    handle = page.locator("[data-testid='stSidebar'] [role='slider']").first
+    handle = page.locator("[data-testid='stSidebar'] [data-testid='stSlider'] input[type='range']").first
     await handle.focus()
     for _ in range(abs(steps)):
         await page.keyboard.press("ArrowLeft" if steps < 0 else "ArrowRight")
@@ -76,8 +76,6 @@ async def record(url: str, out: Path) -> None:
         page = await ctx.new_page()
         await page.goto(url, wait_until="networkidle")
         await page.wait_for_timeout(7000)
-        main = page.locator("section.main, [data-testid='stMain']").first
-        await main.hover()
 
         await caption(page, "⚽ <b>Touchline</b>: a Synthetic Match Insights Engine for the studio.<br>"
                             "Synthetic match → explainable analytics → a fact-checked multi-agent crew", 5)
@@ -100,9 +98,10 @@ async def record(url: str, out: Path) -> None:
         await tab(page, "🎙️ Studio")
         await caption(page, "One verified package: broadcaster brief, fan recap, social posts. Hover a chip "
                             "to see the fact behind any number", 3)
-        chip = page.locator(".cite").first
-        if await chip.count():
-            await chip.hover()
+        try:  # chips also exist in hidden tabs; hover a visible one
+            await page.locator(".cite >> visible=true").nth(2).hover(timeout=3000)
+        except Exception:
+            pass
         await page.wait_for_timeout(3000)
         await tab(page, "🤖 Agent trace")
         await caption(page, "🤖 8 agents on <b>Microsoft Agent Framework</b>: parallel analysts, a Fact-Checker "

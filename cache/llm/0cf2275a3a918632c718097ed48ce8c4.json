@@ -1,0 +1,6 @@
+{
+ "text": "**Headline**  \nPost-swing, Saltcombe Rovers close out victory\n\n1. **61% Possession**: Saltcombe Rovers dominated with 61% possession, controlling the game [F15].\n2. **2 Big Chances**: Saltcombe Rovers created two significant chances, while Duskvale Wanderers missed theirs [F19].\n3. **Penalty Win**: Leon Quinlan\u2019s 90+4' penalty sealed the 2-0 victory, increasing Saltcombe Rovers' win probability to 97% [F74].\n4. **Next Goal**: Duskvale Wanderers now need a late goal to salvage a draw, with a 51% chance of winning from the next goal [F6].\n\n**On-screen graphics**\n- Win-probability swing at 90+4 [F74]\n- Chance xG for next goal [F6]\n- Build-up xT of last big chance [F69]",
+ "tools": [],
+ "tokens": 1271,
+ "provider": "Ollama (local) \u00b7 qwen2.5:7b"
+}

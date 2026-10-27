@@ -1,0 +1,420 @@
+{
+ "match_id": "SCR-DSK-3079@Halftime",
+ "persona": {
+  "team": null,
+  "expertise": "beginner",
+  "language": "English"
+ },
+ "insights": "- **Saltcombe Rovers Dominated Possession**: Saltcombe Rovers held 61% of the possession [F15], suggesting they controlled the match.\n- **Big Chances Decided the Match**: Saltcombe Rovers created two big chances compared to none for Duskvale Wanderers [F19], impacting the outcome significantly.\n- **Emre Lomax\u2019s Early Goal**: The 6-minute goal by Emre Lomax brought Saltcombe Rovers' win probability from 47% to 65% [F61], swinging the momentum.\n- **Wasted Opportunities Cost Salcombe**: Missing the big chance by Leon Quinlan at 12 minutes further reduced Duskvale Wanderers' chances, despite a 6% swing in win probability [F68].\n- **Last-Minute Drama**: Theo Ibarra\u2019s goal in the last minute brought the match to 2-1, sharply raising Duskvale Wanderers' win probability from 0% to 4% [F80], highlighting the importance of late chances.",
+ "tactics": "### Saltcombe Rovers\nSaltcombe Rovers played a possession-based, balanced style, controlling 61% of the game with 343 passes (85% success rate) and maintaining a long ball average of 15 yds. Their pressing intensity was moderate, with a PPDA of 3.85, but they successfully regained possession 22 times within the opponent's half, indicating effective pressure. The Rovers attacked primarily through the centre, creating 44% of their final third entries.\n\n### Duskvale Wanderers\nDuskvale Wanderers employed a deep low-block, defensive-oriented approach. They passed the ball 243 times (79% success rate) with an average length of 18 yds, focusing on maintaining a compact shape. They pressed more loosely, with a PPDA of 6.31, but managed only 11 high-regains (won back within 40m of their own goal). The Wanderers relied on set-pieces, generating 0.20 xG, but did not create any big chances.\n\n### Why momentum shifted\nMomentum shifted to Saltcombe Rovers between minutes 2 and 36, where their threat reached 1.90 xT compared to Duskvale Wanderers' 0.30 xT [F84]. Saltcombe Rovers' possession dominance and effective pressing in the opponents' half kept Duskvale Wanderers on the back foot, leading to a 2-0 lead [F1] by the half. Duskvale Wanderers struggled with their low-block, failing to capitalize on set-pieces, and could not mount a sustained threat.",
+ "live": [
+  {
+   "clock": "6'",
+   "text": "Goal: Emre Lomax (Saltcombe Rovers), score after 1-0.",
+   "event_id": 195
+  },
+  {
+   "clock": "12'",
+   "text": "Big chance missed: Leon Quinlan (Saltcombe Rovers), score after 1-0. Saltcombe Rovers win prob 66% [F66] -> 72% [F67] (swing 6 pts [F68]).",
+   "event_id": 313
+  },
+  {
+   "clock": "45+2'",
+   "text": "Penalty: Leon Quinlan (Saltcombe Rovers), score after 2-0. Saltcombe Rovers win prob 80% [F73] -> 97% [F74] (swing 17 pts [F75]).",
+   "event_id": 1057
+  },
+  {
+   "clock": "45+4'",
+   "text": "Goal: Theo Ibarra (Duskvale Wanderers), score after 2-1. Duskvale Wanderers win prob 0% [F79] -> 4% [F80] (swing 4 pts [F81]).",
+   "event_id": 1079
+  }
+ ],
+ "recap": "**\n In the second half, Saltcombe Rovers capitalized on a penalty, with Leon Quinlan's goal putting the game to 2-0. The next goal is more likely for Saltcombe Rovers, with a 51% chance [F6]. The match could tip either way with the next goal, and both teams have chances to score.",
+ "revisions": 2,
+ "verdicts": [
+  {
+   "revision": 0,
+   "ok": false,
+   "issues": [
+    {
+     "sentence": "",
+     "problem": "reviewer: Saltcombe Rovers' xG of 1.43 [F12] is higher than their possession of 61% [F15], but the draft does not contradict this.",
+     "severity": "review"
+    },
+    {
+     "sentence": "",
+     "problem": "reviewer: Duskvale Wanderers' xG of 0.22 [F36] is low relative to their possession of 39% [F39], but is not contradicted here.",
+     "severity": "review"
+    },
+    {
+     "sentence": "",
+     "problem": "reviewer: The draft does not mention the second half penalty, so the claim about it is not supported by facts.",
+     "severity": "review"
+    }
+   ]
+  },
+  {
+   "revision": 1,
+   "ok": false,
+   "issues": [
+    {
+     "sentence": "The match saw a high tempo in the first half with Emre Lomax scoring after just 6 minutes [F60], significantly boosting Saltcroft Rovers' win probability to 65% [F61].",
+     "fact": "F60",
+     "severity": "error",
+     "problem": "no number in the sentence matches F60 = 47% (Saltcombe Rovers win probability before Emre Lomax's goal at 6')"
+    },
+    {
+     "sentence": "Leon Quinlan missed a big chance at 12 minutes [F66], slightly increasing the odds of a Saltcombe win to 72%, but failing to secure the lead.",
+     "fact": "F66",
+     "severity": "error",
+     "problem": "no number in the sentence matches F66 = 66% (Saltcombe Rovers win probability before Leon Quinlan's big chance missed at 12')"
+    },
+    {
+     "sentence": "Duskvale Wanderers finally reduced the deficit with Theo Ibarra\u2019s late goal, bringing them back into the match with a 4% win probability [F79].",
+     "fact": "F79",
+     "severity": "error",
+     "problem": "no number in the sentence matches F79 = 0% (Duskvale Wanderers win probability before Theo Ibarra's goal at 45+4')"
+    }
+   ]
+  },
+  {
+   "revision": 2,
+   "ok": false,
+   "issues": [
+    {
+     "sentence": "Saltcombe Rovers win prob 47% [F60] -> 65% [F61] (swing 18 pts [F62]).",
+     "fact": "F62",
+     "severity": "error",
+     "problem": "wrote 18 but F62 = 19 pts (Win-probability swing for Saltcombe Rovers from Emre Lomax's goal at 6')"
+    },
+    {
+     "sentence": "So far, Saltcombe Rovers dominated possession with 61% [F9], creating 1.43 xG [F12] compared to Duskvale Wanderers' 0.22 xG [F36].",
+     "fact": "F9",
+     "severity": "error",
+     "problem": "wrote 61 but F9 = 23% (Pre-match draw probability)"
+    },
+    {
+     "sentence": "The match saw a high tempo in the first half, with Emre Lomax scoring after just 6 minutes [F60], significantly boosting Saltcombe Rovers' win probability to 65% [F61].",
+     "fact": "F60",
+     "severity": "error",
+     "problem": "no number in the sentence matches F60 = 47% (Saltcombe Rovers win probability before Emre Lomax's goal at 6')"
+    },
+    {
+     "sentence": "Leon Quinlan missed a big chance at 12 minutes [F66], slightly increasing the odds of a Saltcombe win to 72%, but failing to secure the lead.",
+     "fact": "F66",
+     "severity": "error",
+     "problem": "no number in the sentence matches F66 = 66% (Saltcombe Rovers win probability before Leon Quinlan's big chance missed at 12')"
+    },
+    {
+     "sentence": "Duskvale Wanderers finally reduced the deficit with Theo Ibarra\u2019s late goal, bringing them back into the match with a 4% win probability [F79].",
+     "fact": "F79",
+     "severity": "error",
+     "problem": "no number in the sentence matches F79 = 0% (Duskvale Wanderers win probability before Theo Ibarra's goal at 45+4')"
+    }
+   ]
+  }
+ ],
+ "outputs": {
+  "broadcast": "**Headline** \nPost-swing, Saltcombe Rovers close out victory\n\n1. **61% Possession**: Saltcombe Rovers dominated with 61% possession, controlling the game [F15].\n2. **2 Big Chances**: Saltcombe Rovers created two significant chances, while Duskvale Wanderers missed theirs [F19].\n3. **Penalty Win**: Leon Quinlan\u2019s 90+4' penalty sealed the 2-0 victory, increasing Saltcombe Rovers' win probability to 97% [F74].\n4. **Next Goal**: Duskvale Wanderers now need a late goal to salvage a draw, with a 51% chance of winning from the next goal [F6].\n\n**On-screen graphics**\n\n- Chance xG for next goal [F6]\n- Build-up xT of last big chance [F69]",
+  "fan": "So far in the second half, Saltcombe Rovers really stepped up their game with a well-deserved penalty goal from Leon Quinlan, extending their lead to 2-0. Given the current 51% chance [F6] that Saltcombe Rovers will be the next to score, they are well-positioned to see this game out. However, don't write off Duskvale Wanderers just yet\u2014both teams have a real chance to turn things around with the next goal. \n\n Emre Lomax\u2019s early goal [F59] gave Saltcombe Rovers a strong foothold, pushing their win probability up from 47% to 65% [F61], and the missed big chance by Leon Quinlan at 12 minutes [F65] could cost them more if it continues. Watch out for the dramatic finish, as Theo Ibarra's late goal [F78] brought Duskvale Wanderers back into the game with a thrilling final push.",
+  "social": "### Post 1: Full-Time Score\nSaltcombe Rovers took home a hard-fought 2-1 win over Duskvale Wanderers! The game was all but decided in the first half with Emre Lomax opening the scoring [F61], and Leon Quinlan cementing the victory [F74]. Theo Ibarra scored a late goal for Duskvale [F80] but it was too little, too late. Who do you think played the decisive role? #FTScore\n\n---\n\n### Post 2: Stat-of-the-Match\n Their goal from Emre Lomax [F61] turned the match's momentum. #StatoftheMatch\n\n---\n\n### Post 3: Turning-Point Post\nThe match's turning point came at the 6th minute when Emre Lomax scored, swinging Saltcombe Rovers' win probability from 47% to 65% [F59]. This early goal not only changed the game but also sent a strong message to Duskvale Wanderers. #TurningPoint"
+ },
+ "checks": {
+  "insights": {
+   "ok": true,
+   "citations_checked": 5,
+   "issues": []
+  },
+  "tactics": {
+   "ok": true,
+   "citations_checked": 2,
+   "issues": []
+  },
+  "recap": {
+   "ok": true,
+   "citations_checked": 1,
+   "issues": []
+  },
+  "fan": {
+   "ok": true,
+   "citations_checked": 5,
+   "issues": []
+  },
+  "broadcast": {
+   "ok": true,
+   "citations_checked": 6,
+   "issues": []
+  },
+  "social": {
+   "ok": true,
+   "citations_checked": 5,
+   "issues": []
+  }
+ },
+ "used": {
+  "Stats Analyst": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Tactician": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Commentator": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Fact-Checker": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Fan Producer": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Broadcast Producer": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Social Producer": "Ollama (local) \u00b7 qwen2.5:7b"
+ },
+ "trace": [
+  {
+   "agent": "Desk",
+   "step": "start",
+   "detail": "match SCR-DSK-3079@Halftime; providers: Ollama (local) \u00b7 qwen2.5:7b -> Offline templates",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 2,
+   "end_ms": 2,
+   "tokens": null
+  },
+  {
+   "agent": "Tactician",
+   "step": "tool",
+   "detail": "get_team_report(Saltcombe Rovers)",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 18262,
+   "end_ms": 18263,
+   "tokens": null
+  },
+  {
+   "agent": "Tactician",
+   "step": "tool",
+   "detail": "get_team_report(Duskvale Wanderers)",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 18263,
+   "end_ms": 18263,
+   "tokens": null
+  },
+  {
+   "agent": "Stats Analyst",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 2,
+   "end_ms": 28976,
+   "tokens": 1546
+  },
+  {
+   "agent": "Tactician",
+   "step": "run",
+   "detail": "2 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 252,
+   "end_ms": 43898,
+   "tokens": 3062
+  },
+  {
+   "agent": "Commentator",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 43900,
+   "end_ms": 66484,
+   "tokens": 2213
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "verify",
+   "detail": "rev 0: 19 citations, 0 errors, 0 warnings",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 66486,
+   "end_ms": 66489,
+   "tokens": null
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 66490,
+   "end_ms": 76867,
+   "tokens": 1010
+  },
+  {
+   "agent": "Commentator",
+   "step": "handoff",
+   "detail": "revision 1 requested by Fact-Checker",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 76868,
+   "end_ms": 76868,
+   "tokens": null
+  },
+  {
+   "agent": "Commentator",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 76868,
+   "end_ms": 99972,
+   "tokens": 1582
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "verify",
+   "detail": "rev 1: 20 citations, 3 errors, 0 warnings",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 99974,
+   "end_ms": 99976,
+   "tokens": null
+  },
+  {
+   "agent": "Commentator",
+   "step": "handoff",
+   "detail": "revision 2 requested by Fact-Checker",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 99976,
+   "end_ms": 99976,
+   "tokens": null
+  },
+  {
+   "agent": "Commentator",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 99976,
+   "end_ms": 120593,
+   "tokens": 1697
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "verify",
+   "detail": "rev 2: 20 citations, 5 errors, 0 warnings",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 120595,
+   "end_ms": 120597,
+   "tokens": null
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "repair",
+   "detail": "revision budget spent: stripped unsupported sentences",
+   "provider": null,
+   "status": "fallback",
+   "start_ms": 120597,
+   "end_ms": 120597,
+   "tokens": null
+  },
+  {
+   "agent": "Fact-Checker",
+   "step": "approve",
+   "detail": "approved after 2 revision(s)",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 120599,
+   "end_ms": 120599,
+   "tokens": null
+  },
+  {
+   "agent": "Producer hub",
+   "step": "handoff",
+   "detail": "approved package sent to 3 audience producers",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 120600,
+   "end_ms": 120600,
+   "tokens": null
+  },
+  {
+   "agent": "Fan Producer",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 120604,
+   "end_ms": 132376,
+   "tokens": 1318
+  },
+  {
+   "agent": "Fan Producer",
+   "step": "repair",
+   "detail": "removed 1 unsupported sentence(s)",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 132386,
+   "end_ms": 132386,
+   "tokens": null
+  },
+  {
+   "agent": "Broadcast Producer",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 120600,
+   "end_ms": 142156,
+   "tokens": 1271
+  },
+  {
+   "agent": "Broadcast Producer",
+   "step": "repair",
+   "detail": "removed 1 unsupported sentence(s)",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 142158,
+   "end_ms": 142158,
+   "tokens": null
+  },
+  {
+   "agent": "Social Producer",
+   "step": "run",
+   "detail": "0 tool call(s)",
+   "provider": "Ollama (local) \u00b7 qwen2.5:7b",
+   "status": "ok",
+   "start_ms": 120606,
+   "end_ms": 153868,
+   "tokens": 1296
+  },
+  {
+   "agent": "Social Producer",
+   "step": "repair",
+   "detail": "removed 1 unsupported sentence(s)",
+   "provider": null,
+   "status": "warn",
+   "start_ms": 153869,
+   "end_ms": 153869,
+   "tokens": null
+  },
+  {
+   "agent": "Editor",
+   "step": "publish",
+   "detail": "3 outputs, 3 fully verified",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 153871,
+   "end_ms": 153871,
+   "tokens": null
+  },
+  {
+   "agent": "Desk",
+   "step": "done",
+   "detail": "24 trace events",
+   "provider": null,
+   "status": "ok",
+   "start_ms": 153871,
+   "end_ms": 153871,
+   "tokens": null
+  }
+ ],
+ "providers": [
+  "Ollama (local) \u00b7 qwen2.5:7b",
+  "Offline templates"
+ ],
+ "outage": []
+}

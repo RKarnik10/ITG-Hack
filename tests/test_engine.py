@@ -94,3 +94,16 @@ def test_store_verifier_catches_bad_numbers():
     report = store.verify(bad)
     assert not report["ok"]
     assert any("never occurred" in i["problem"] for i in report["issues"])
+
+
+def test_real_time_cut_only_sees_events_so_far():
+    from touchline.analytics.store import MatchStore, cut_match
+    df, meta = simulate_match("SCR", "DSK", seed=3079)
+    d, m = cut_match(df, meta, "Half-time")
+    assert (d.period == 1).all() and m["live"] == "Half-time" and m["match_id"].endswith("@Halftime")
+    store = MatchStore(d, m)
+    probs = [store.facts[store.f_live[k]].value for k in ("wp_home", "wp_draw", "wp_away")]
+    assert abs(sum(probs) - 100) < 1.5
+    assert "STATUS: LIVE" in store.summary_text()
+    full = MatchStore(df, meta)
+    assert not full.live and "STATUS: full time" in full.summary_text()
