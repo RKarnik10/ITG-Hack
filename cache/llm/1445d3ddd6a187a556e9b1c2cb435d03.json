@@ -1,0 +1,6 @@
+{
+ "text": "- **Saltcombe Rovers dominated possession**: Saltcombe Rovers held 59% [F9] of total possession.\n- **Duskvale Wanderers created fewer big chances**: Duskvale Wanderers failed to capitalize on any big chances, creating 0 [F37] compared to Saltcombe Rovers' 3 [F13].\n- **Theo Ibarra's goal was a pivotal switch**: Theo Ibarra's 45+4' goal [F72] changed the game, reversing Duskvale Wanderers' win probability from 0% [F73] to 4% [F74].\n- **Penalty significantly favored Saltcombe Rovers**: Leon Quinlan's penalty [F66] boosted Saltcombe Rovers' win probability from 80% [F67] to 97% [F68], marking a major shift.\n- **Late comeback despite early lead**: Duskvale Wanderers completed a comeback from trailing 2-0 to win 3-2, emphasizing their fighting spirit late in the match.",
+ "tools": [],
+ "tokens": 1775,
+ "provider": "Ollama (local) \u00b7 qwen2.5:7b"
+}

@@ -41,6 +41,10 @@ class Fact:
         return f"{v}{self.unit}"
 
 
+def _p(name: str) -> str:
+    return name + ("'" if str(name).endswith("s") else "'s")
+
+
 def _num(v):
     if isinstance(v, (np.integer,)):
         return int(v)
@@ -114,18 +118,18 @@ class MatchStore:
             team = tp["team"]
             f = {"clock": self.add(f"{tp['kind']} by {tp['player']} ({n[team]}) - match clock", tp["clock"],
                                    team=team, evidence=tp["evidence"], kind="clock")}
-            f["wp_before"] = self.add(f"{n[team]} win probability before {tp['player']}'s {tp['kind'].lower()} at {tp['clock']}",
+            f["wp_before"] = self.add(f"{n[team]} win probability before {_p(tp['player'])} {tp['kind'].lower()} at {tp['clock']}",
                                       tp["wp_before"], "%", team, tp["evidence"], "wp")
-            f["wp_after"] = self.add(f"{n[team]} win probability after {tp['player']}'s {tp['kind'].lower()} at {tp['clock']}",
+            f["wp_after"] = self.add(f"{n[team]} win probability after {_p(tp['player'])} {tp['kind'].lower()} at {tp['clock']}",
                                      tp["wp_after"], "%", team, tp["evidence"], "wp")
-            f["dwp"] = self.add(f"Win-probability swing for {n[team]} from {tp['player']}'s {tp['kind'].lower()} at {tp['clock']}",
+            f["dwp"] = self.add(f"Win-probability swing for {n[team]} from {_p(tp['player'])} {tp['kind'].lower()} at {tp['clock']}",
                                 tp["dwp"], " pts", team, tp["evidence"], "wp")
             if tp["xg"] is not None:
-                f["xg"] = self.add(f"xG of {tp['player']}'s chance at {tp['clock']}", tp["xg"], "", team, tp["evidence"])
+                f["xg"] = self.add(f"xG of {_p(tp['player'])} chance at {tp['clock']}", tp["xg"], "", team, tp["evidence"])
             if tp["counterfactual_dwp"] is not None:
                 f["cf"] = self.add(f"Win-probability {n[team]} would have gained had {tp['player']} scored at {tp['clock']}",
                                    tp["counterfactual_dwp"], " pts", team, tp["evidence"], "wp")
-            f["buildup_xt"] = self.add(f"xT built up in the move leading to {tp['player']}'s {tp['kind'].lower()} at {tp['clock']}",
+            f["buildup_xt"] = self.add(f"xT built up in the move leading to {_p(tp['player'])} {tp['kind'].lower()} at {tp['clock']}",
                                        tp["buildup_xt"], "", team, tp["evidence"])
             tp["facts"] = f
         for s in self.spells:
@@ -134,7 +138,7 @@ class MatchStore:
                                    team=s["team"], kind="window"),
                 "for": self.add(f"{n[s['team']]} threat (xT+xG) during {s['start']}'-{s['end']}' spell",
                                 s["threat_for"], "", s["team"]),
-                "against": self.add(f"Opponent threat (xT+xG) during {n[s['team']]}'s {s['start']}'-{s['end']}' spell",
+                "against": self.add(f"Opponent threat (xT+xG) during {_p(n[s['team']])} {s['start']}'-{s['end']}' spell",
                                     s["threat_against"], "", s["team"]),
             }
         self.f_player: dict[str, dict[str, str]] = {}

@@ -8,6 +8,10 @@ from __future__ import annotations
 from ..analytics.store import MatchStore
 
 
+def _p(name: str) -> str:
+    return name + ("'" if name.endswith("s") else "'s")
+
+
 def _lead(store: MatchStore):
     h, a = store.meta["score"]
     if h == a:
@@ -28,7 +32,7 @@ def analyst(store: MatchStore) -> str:
     if store.turning_points:
         tp = max(store.turning_points, key=lambda t: abs(t["dwp"]))
         out.append(f"- **The decisive moment came at {tp['clock']}**: {tp['player']}'s {tp['kind'].lower()} swung "
-                   f"{tp['team_name']}'s win probability by {c(tp['facts']['dwp'])}.")
+                   f"{_p(tp['team_name'])} win probability by {c(tp['facts']['dwp'])}.")
         misses = [t for t in store.turning_points if "cf" in t["facts"]]
         if misses:
             m = max(misses, key=lambda t: t["counterfactual_dwp"])
@@ -53,7 +57,7 @@ def tactician(store: MatchStore) -> str:
                      f"{main} ({c(lanes[main]) if lanes else 'n/a'}).")
     if store.spells:
         s = max(store.spells, key=lambda s: s["threat_for"])
-        why = (f"### Why momentum shifted\n{n[s['team']]}'s strongest spell ran from minute {s['start']} to {s['end']} "
+        why = (f"### Why momentum shifted\n{_p(n[s['team']])} strongest spell ran from minute {s['start']} to {s['end']} "
                f"[{s['facts']['window']}], generating threat {c(s['facts']['for'])} against {c(s['facts']['against'])}.")
     else:
         why = "### Why momentum shifted\nNeither side sustained a long spell of dominance; the game turned on moments."
@@ -70,10 +74,10 @@ def commentary(store: MatchStore) -> str:
             txt = (f"GOAL! {tp['player']} scores for {tp['team_name']} - {tp['score_after']}. Win probability "
                    f"{c(f['wp_before'])} to {c(f['wp_after'])}.")
         elif tp["kind"] == "Red card":
-            txt = f"Red card! {tp['player']} is off and {tp['team_name']}'s win probability drops to {c(f['wp_after'])}."
+            txt = f"Red card! {tp['player']} is off and {_p(tp['team_name'])} win probability drops to {c(f['wp_after'])}."
         else:
             txt = (f"Big chance for {tp['player']} (xG {c(f['xg'])}) but it stays out - a goal would have added "
-                   f"{c(f['cf'])} to {tp['team_name']}'s win probability.")
+                   f"{c(f['cf'])} to {_p(tp['team_name'])} win probability.")
         lines.append(f"{tp['clock']} | {txt}")
     return "LIVE:\n" + "\n".join(lines) + "\nRECAP:\n" + recap(store)
 
@@ -90,7 +94,7 @@ def recap(store: MatchStore) -> str:
     if store.turning_points:
         tp = max(store.turning_points, key=lambda t: abs(t["dwp"]))
         body += (f" The biggest swing came at {tp['clock']} when {tp['player']}'s {tp['kind'].lower()} moved "
-                 f"{tp['team_name']}'s win probability from {c(tp['facts']['wp_before'])} to {c(tp['facts']['wp_after'])}.")
+                 f"{_p(tp['team_name'])} win probability from {c(tp['facts']['wp_before'])} to {c(tp['facts']['wp_after'])}.")
     return head + body
 
 

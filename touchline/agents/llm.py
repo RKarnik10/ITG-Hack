@@ -61,7 +61,7 @@ def available_providers() -> list[Provider]:
         elif name == "ollama":
             base = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1")
             if _ollama_up(base):
-                chain.append(Provider("ollama", os.getenv("OLLAMA_MODEL", "llama3.2"), base, "ollama", timeout=150))
+                chain.append(Provider("ollama", os.getenv("OLLAMA_MODEL", "qwen2.5:7b"), base, "ollama", timeout=150))
         elif name == "offline":
             chain.append(Provider("offline", "templates"))
     if not chain or chain[-1].name != "offline":

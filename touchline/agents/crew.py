@@ -412,3 +412,36 @@ def crew_mermaid() -> str:
     df, meta = simulate_match("KBY", "IRV", 1)
     mc = MatchContext(MatchStore(df, meta), Persona(), [Provider("offline", "templates")])
     return WorkflowViz(build_workflow(mc)).to_mermaid()
+
+
+def start_crew(store: MatchStore, persona: Persona | None = None, outage: set[str] | None = None,
+               inject_error: bool = False, providers: list[Provider] | None = None):
+    """Run the crew on a background thread so a UI can stream the trace while it works.
+
+    Returns (MatchContext, thread); the context fills in as agents finish.
+    """
+    import threading
+    mc = MatchContext(store, persona or Persona(), providers or available_providers(), set(outage or ()), inject_error)
+
+    def _run():
+        try:
+            asyncio.run(build_workflow(mc).run(Kickoff(store.meta["match_id"])))
+            mc.log("Desk", "done", f"{len(mc.trace)} trace events")
+        except Exception as e:  # never leave the UI hanging
+            mc.log("Desk", "error", f"workflow failed: {type(e).__name__}: {e}", status="error")
+
+    th = threading.Thread(target=_run, daemon=True)
+    th.start()
+    return mc, th
+
+
+def workflow_dot() -> str:
+    """Graphviz DOT of the real crew workflow, styled for a dark UI."""
+    from ..sim.engine import simulate_match
+    df, meta = simulate_match("KBY", "IRV", 1)
+    mc = MatchContext(MatchStore(df, meta), Persona(), [Provider("offline", "templates")])
+    dot = WorkflowViz(build_workflow(mc)).to_digraph()
+    style = ('bgcolor="transparent"; rankdir=LR; node [shape=box, style="rounded,filled", fillcolor="#1f2937", '
+             'fontcolor="#f0efec", color="#3987e5", fontname="Helvetica"]; '
+             'edge [color="#9ca3af", fontcolor="#c3c2b7", fontname="Helvetica"];')
+    return dot.replace("{", "{ " + style, 1)

@@ -1,0 +1,10 @@
+{
+ "text": "### Saltcombe Rovers\nSaltcombe Rovers employed a possession-based, balanced style [F9], holding 59% of possession [F9]. Their passing was efficient at 84% accuracy [F11], with an average pass length of 15 yards [F23]. They pressed aggressively with a PPDA of 4.68 [F16], regaining possession within 40 meters of their goal 34 times [F15]. Saltcombe focused their attacks down the left and centre of the field [F26, F27], taking advantage of their set-piece opportunities [F18, F19]. They dominated from minute 2 to 36, controlling 70% of the threat [F97, F98].\n\n### Duskvale Wanderers\nDuskvale Wanderers played with a deep low block and exploited set pieces [F33, F42]. Their possession was lower at 41% [F33], but passes were more accurate at 80% [F35]. The team's attack centered around the centre channel [F51]. Despite fewer chances, their counters led to a goal [F38]. They showed resilience in their pressing with a PPDA of 5.63 [F40], regaining possession within 40 meters 23 times [F39]. Their dominance came in the second spell, from minute 51 to 59, when they controlled 79% of the threat [F100, F101].\n\n### Why momentum shifted\nMomentum shifted in the match due to strategic changes and the effectiveness of the teams' respective tactics. Saltcombe Rovers dominated from the start with their possession and pressing, maintaining a high threat level [F97, F98, F99]. However, Duskvale Wanderers adjusted their defensive block and counter-attacking strategies, showing a tactical awareness [F100, F101, F102] to take advantage in the middle phase of the game. Saltcombe's focus on set pieces also played a role in their dominance, while Duskvale's resilience and counter-attacks contributed to their improved second half performance [F38].",
+ "tools": [
+  "get_team_report",
+  "get_team_report",
+  "get_momentum"
+ ],
+ "tokens": 2863,
+ "provider": "Ollama (local) \u00b7 qwen2.5:7b"
+}
