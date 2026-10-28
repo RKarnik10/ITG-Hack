@@ -211,7 +211,8 @@ class MatchStore:
                  f"{n[self.home]} {m['score'][0]}-{m['score'][1]} {n[self.away]} [{self.f_score}] (synthetic match, seed {m['seed']})",
                  f"Pre-match win probability: {n[self.home]} {self.c(self.f_pre[self.home])}, draw {self.c(self.f_pre['draw'])}, "
                  f"{n[self.away]} {self.c(self.f_pre[self.away])}",
-                 f"Storyline tags: {', '.join(self.storyline['tags']) or 'none'}"]
+                 f"Storyline tags: {', '.join(self.storyline['tags']) or 'none'}",
+                 "Goals in order (running score, home-away): " + self.goals_text()]
         if self.live:
             f = self.f_live
             lines.append(f"Live win probability now: {n[self.home]} {self.c(f['wp_home'])}, draw {self.c(f['wp_draw'])}, "
@@ -223,6 +224,11 @@ class MatchStore:
                          f"possession {self.c(f['possession_pct'])}, pass completion {self.c(f['pass_completion_pct'])}, "
                          f"xT {self.c(f['xt'])}, big chances {self.c(f['big_chances'])}")
         return "\n".join(lines)
+
+    def goals_text(self) -> str:
+        g = self.df[(self.df.type == "Shot") & (self.df.outcome == "Goal")]
+        return "; ".join(f"{r.clock} {r.player}{' (pen)' if r.set_piece == 'Penalty' else ''}, {self.names[r.team]} "
+                         f"({r.score_home}-{r.score_away})" for r in g.itertuples()) or "none"
 
     def team_text(self, team: str) -> str:
         f, n = self.f_team[team], self.names[team]

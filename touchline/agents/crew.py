@@ -163,6 +163,10 @@ def guarded(mc: "MatchContext", agent: str, text: str, template: str) -> tuple[s
     """Verify an agent's output; strip bad sentences, or fall back to the template if too little survives."""
     store = mc.store
     rep = store.verify(text)
+    if rep["ok"] and rep["citations_checked"] == 0 and text.strip() != template.strip():
+        mc.log(agent, "repair", "no fact citations, so nothing could be verified: replaced with grounded template",
+               status="fallback")
+        return template, store.verify(template)
     if rep["ok"]:
         return text, rep
     clean = sanitize(text, rep)

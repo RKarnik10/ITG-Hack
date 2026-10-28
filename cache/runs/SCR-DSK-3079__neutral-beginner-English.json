@@ -77,7 +77,7 @@
  "outputs": {
   "broadcast": "**Headline**  \nDuskvale Wanderers Come From Behind to Topple Saltcombe Rovers [F1]\n\n1. **Saltcombe Rovers dominated possession, holding 59% [F9] but struggled with big chances, creating only 3 [F13].\n2. **Leon Quinlan's penalty boosted Saltcombe Rovers' win probability from 80% [F67] to 97% [F68], marking a major shift.\n3. **Theo Ibarra's goal at 45+4' [F72] significantly reversed the game, changing Duskvale Wanderers' win probability from 0% [F73] to 4% [F74].\n4. **Dayo Okafor's equalizer in the 52nd minute [F78] pushed Duskvale Wanderers' win probability to 23% [F80], a significant comeback from two goals down.\n\n**On-screen graphics**  \n1. Win-probability swing at 45+4' [F74]  \n2. Big chance missed by Emre Lomax at 6' [F57]  \n3. Late comeback goals in the 52' and 89' minutes [F78, F84]",
   "fan": "Saltcombe Rovers started off strong and quickly took a 2-0 lead, thanks to a penalty from Leon Quinlan, significantly increasing their chances of winning to 97% [F68]. However, the game took an unexpected turn when Theo Ibarra scored for Duskvale Wanderers at the 45-minute mark, bringing the teams back to parity [F72]. Despite the early lead, Saltcombe Rovers failed to capitalize on their chances, creating just three big chances [F13] compared to Duskvale Wanderers' zero [F37]. Duskvale Wanderers showcased great resilience, scoring the equalizer at 2-2 and eventually pulling ahead with Yusuf Osei's goal in the 90th minute, securing a dramatic 3-2 win [F84]. This comeback story highlighted their determination and fighting spirit, despite trailing in the first half.",
-  "social": "### Post 1: Full-Time Score Post\nSaltcombe Rovers led early with a 2-0 advantage, but Duskvale Wanderers staged a comeback, scoring two goals in the second half. The match ended 3-2 in favor of Duskvale Wanderers. #ComebackMagic [R4]\n\n### Post 2: Stat-of-the-Match Post\nDuskvale Wanderers created no big chances but managed to score twice, reversing their fortunes. Theo Ibarra's late goal was crucial, giving them the 3-2 victory. #GameChanger [R3]\n\n### Post 3: Turning-Point Post\nThe game took a dramatic turn at 45+4' with Theo Ibarra's equalizer, swaying Duskvale Wanderers' win probability from 0% to 4%. This goal showed the resilience and fighting spirit needed for a comeback! #TurningPoint [R72]"
+  "social": "1) FT: Saltcombe Rovers 2-3 Duskvale Wanderers [F1] \u26bd #Touchline\n2) Saltcombe Rovers created xG 2.44 [F6] \ud83d\udcca #Touchline\n3) 89': Yusuf Osei swings it - win probability 90 pts [F87] \ud83d\udd04 #Touchline"
  },
  "checks": {
   "insights": {
@@ -113,7 +113,7 @@
   },
   "social": {
    "ok": true,
-   "citations_checked": 0,
+   "citations_checked": 3,
    "issues": []
   },
   "broadcast": {
@@ -132,7 +132,7 @@
   "Tactician": "Ollama (local) \u00b7 qwen2.5:7b",
   "Commentator": "Ollama (local) \u00b7 qwen2.5:7b",
   "Fact-Checker": "Ollama (local) \u00b7 qwen2.5:7b",
-  "Social Producer": "Ollama (local) \u00b7 qwen2.5:7b",
+  "Social Producer": "Offline templates",
   "Broadcast Producer": "Ollama (local) \u00b7 qwen2.5:7b",
   "Fan Producer": "Ollama (local) \u00b7 qwen2.5:7b"
  },

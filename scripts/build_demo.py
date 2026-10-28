@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from touchline.agents.crew import Persona, run_crew_sync  # noqa: E402
-from touchline.analytics.store import MatchStore  # noqa: E402
+from touchline.analytics.store import MatchStore, cut_match  # noqa: E402
 from touchline.sim.engine import simulate_match  # noqa: E402
 from touchline.sim.teams import CLUBS  # noqa: E402
 
@@ -61,12 +61,13 @@ def main() -> None:
         return
     runs = CACHE / "runs"
     runs.mkdir(exist_ok=True)
-    jobs = [(p, Persona()) for p in picks]
+    jobs = [(p, Persona(), "Full time") for p in picks]
     first = picks[0]
-    jobs += [(first, Persona(first["away"], "beginner", "Spanish"))]
-    for p, persona in jobs:
+    jobs += [(first, Persona(first["away"], "beginner", "Spanish"), "Full time"),
+             (first, Persona(), "Half-time")]  # the real-time demo
+    for p, persona, moment in jobs:
         t = time.time()
-        df, meta = simulate_match(p["home"], p["away"], p["seed"])
+        df, meta = cut_match(*simulate_match(p["home"], p["away"], p["seed"]), moment)
         mc = run_crew_sync(MatchStore(df, meta), persona)
         (runs / f"{meta['match_id']}__{persona.key()}.json").write_text(json.dumps(mc.to_dict(), indent=1, default=str))
         print(f"crew {meta['match_id']} {persona.key()}: {time.time() - t:.0f}s, revisions={mc.revisions}, "

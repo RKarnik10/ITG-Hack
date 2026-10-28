@@ -40,3 +40,13 @@ def test_live_line_parser_handles_model_formats():
     text = "LIVE:\n11' [F53] | Goal!\n**86'** - Penalty\nRECAP:\nA match."
     live, recap = parse_commentary(text, store)
     assert [ln["clock"] for ln in live][:2] == ["11'", "86'"] and recap == "A match."
+
+
+def test_uncited_output_falls_back_to_template():
+    from touchline.agents import fallback
+    from touchline.agents.crew import MatchContext, guarded
+    store = _store()
+    mc = MatchContext(store, Persona(), OFFLINE)
+    text, check = guarded(mc, "Fan Producer", "What a match, a real thriller from start to finish!", fallback.recap(store))
+    assert text == fallback.recap(store) and check["ok"] and check["citations_checked"] > 0
+    assert mc.trace[-1]["status"] == "fallback"

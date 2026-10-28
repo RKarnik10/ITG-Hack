@@ -130,7 +130,8 @@ async def record(url: str, out: Path) -> None:
         await page.get_by_role("option", name="Spanish").click()
         await page.wait_for_timeout(2500)
         await tab(page, "🎙️ Studio")
-        await caption(page, "❤️ Personalised: the same match for an away fan, beginner level, in Spanish", 6)
+        await caption(page, "❤️ Personalised: the same match for an away fan, beginner level, in Spanish, "
+                            "still fact-checked against the data", 6)
         await tab(page, "🧪 Synthetic data")
         await caption(page, "🧪 100% synthetic, about 2,200 events per match, calibrated against real-world ranges by tests", 5)
         await caption(page, "<b>Touchline</b> · Microsoft Agent Framework · GitHub Models · Azure AI Foundry & Container Apps ready", 4)
