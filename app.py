@@ -182,7 +182,9 @@ st.markdown(f'<div style="text-align:center">{chips}<span class="chip">synthetic
 if run is None:
     st.info("No AI run for this match yet. Press **▶ Run the AI crew** in the sidebar. The analytics below are live already.")
 elif run["persona"] != persona.__dict__ or run.get("outage") != sorted(outage):
-    st.caption(f"Showing the crew's run for persona {run['persona']}. Press ▶ Run the AI crew to personalise.")
+    rp = run["persona"]
+    shown = f"{CLUBS[rp['team']].name + ' fan' if rp['team'] else 'neutral'} · {rp['expertise']} · {rp['language']}"
+    st.info(f"Showing the saved run for **{shown}**. Press **▶ Run the AI crew** to produce it for your settings.")
 
 tab_live, tab_intel, tab_studio, tab_trace, tab_ask, tab_data = st.tabs(
     ["📺 Live", "🧠 Intelligence", "🎙️ Studio", "🤖 Agent trace", "💬 Ask the match", "🧪 Synthetic data"])

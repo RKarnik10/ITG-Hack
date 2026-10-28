@@ -107,3 +107,16 @@ def test_real_time_cut_only_sees_events_so_far():
     assert "STATUS: LIVE" in store.summary_text()
     full = MatchStore(df, meta)
     assert not full.live and "STATUS: full time" in full.summary_text()
+
+
+def test_fan_template_localised_and_verified():
+    from touchline.agents import fallback
+    from touchline.analytics.store import MatchStore, cut_match
+    df, meta = simulate_match("SCR", "DSK", seed=3079)
+    for moment in ("Full time", "Half-time"):
+        store = MatchStore(*cut_match(df, meta, moment))
+        for lang in fallback.FAN_TEXT:
+            text = fallback.fan(store, {"team": "DSK", "expertise": "beginner", "language": lang})
+            assert store.verify(text)["ok"], (moment, lang)
+    store = MatchStore(df, meta)
+    assert "beat" not in fallback.fan(store, {"team": "DSK", "expertise": "expert", "language": "Spanish"})

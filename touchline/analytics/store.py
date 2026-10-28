@@ -35,13 +35,14 @@ def cut_match(df: pd.DataFrame, meta: dict, moment: str = "Full time") -> tuple[
     m["match_id"] = f"{meta['match_id']}@{re.sub(r'[^A-Za-z0-9]', '', moment)}"
     return d, m
 
+# re.A: ASCII \w/\b, so numbers written straight after CJK/Devanagari text still count
 CITE = re.compile(r"\[(F\d+)\]")
 CITES = re.compile(r"\[(F\d+(?:\s*,\s*F\d+)*)\]")
-SCORE = re.compile(r"\b(\d{1,2})\s*[-–]\s*(\d{1,2})\b")
-MINUTE = re.compile(r"\b(\d{1,3})(?:\+(\d{1,2}))?(?:'|’|\s*(?:st|nd|rd|th)?\s*min(?:ute)?s?\b)")
-NUM = re.compile(r"(?<![\w.])(\d+(?:\.\d+)?)(?![\w])")
-PAIRED = re.compile(r"(?<![\w.])[+-]?(\d+(?:\.\d+)?)\s*(?:%|pts?|points|/10|yards?|yds)?\s*\[(F\d+(?:\s*,\s*F\d+)*)\]")
-SENT = re.compile(r"(?<=[.!?])\s+|\n+")
+SCORE = re.compile(r"\b(\d{1,2})\s*[-–]\s*(\d{1,2})\b", re.A)
+MINUTE = re.compile(r"\b(\d{1,3})(?:\+(\d{1,2}))?(?:'|’|\s*(?:st|nd|rd|th)?\s*min(?:ute)?s?\b)", re.A)
+NUM = re.compile(r"(?<![\w.])(\d+(?:\.\d+)?)(?![\w])", re.A)
+PAIRED = re.compile(r"(?<![\w.])[+-]?(\d+(?:\.\d+)?)\s*(?:%|pts?|points|/10|yards?|yds)?\s*\[(F\d+(?:\s*,\s*F\d+)*)\]", re.A)
+SENT = re.compile(r"(?<=[.!?])\s+|(?<=[。！？।])|\n+")
 
 
 @dataclass
